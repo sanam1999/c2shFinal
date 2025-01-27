@@ -1,0 +1,268 @@
+<style>
+    .error-msg,
+    .success-msg {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: transparent;
+
+    }
+
+    .error-message {
+        font-size: 17px;
+    }
+
+    .displaynome {
+        display: none;
+    }
+
+    .color {
+        backdrop-filter: blur(5px);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .msg-box {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        gap: 20px;
+        transform: translate(-1%, 33%);
+    }
+
+    .msg-box .msg-icon {
+        background: rgba(0, 0, 0, 0.452);
+        width: 250px;
+        height: fit-content;
+        overflow: hidden;
+        text-align: center;
+        border-radius: 40px;
+        padding: 10px;
+    }
+
+    .msg-box .msg-icon img {
+        width: 100%;
+    }
+
+    .msg-box .msg-icon h1 {
+        font-size: 3.1rem;
+        margin: 0;
+        color: white;
+    }
+
+    .msg-body {
+        width: 230px;
+        padding: 20px;
+        height: auto;
+        font-size: 1.3rem;
+        color: white;
+        border-radius: 30px;
+        text-align: center;
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0.452);
+    }
+
+    .E-msg-btn button {
+        width: 175px;
+        height: 50px;
+        font-size: 1.1rem;
+        border-radius: 20px;
+        background: red;
+        color: white;
+        font-weight: 300;
+        border: transparent;
+    }
+
+    .S-msg-btn button {
+        width: 175px;
+        height: 50px;
+        font-size: 1.1rem;
+        border-radius: 20px;
+        background: red;
+        color: white;
+        font-weight: 300;
+        border: transparent;
+    }
+
+    .msg-body p {
+        margin: 0;
+    }
+
+
+    @media (max-width: 776px) {
+        .msg-box .msg-icon {
+            width: 150px;
+        }
+
+        .msg-box .msg-icon h1 {
+            font-size: 2.7rem;
+        }
+
+        .msg-body {
+            width: 50%;
+            font-size: 1rem;
+        }
+    }
+
+       .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+           
+        }
+
+        /* Spinner styling */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid white; /* White color */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Prevent interaction with background content */
+        
+</style>
+
+<!-- Flash message from backend -->
+<% if(success && success.length) { %>
+    <div class=" success-msg">
+        <div class="color">
+            <div class="msg-box">
+                <div class="msg-icon">
+                    <img src="/images/susscs.png">
+                    <h1>Yey!</h1>
+                </div>
+                <div class="msg-body">
+                    <p class="">
+                        <%= success %>
+                    </p>
+                </div>
+                <div class="S-msg-btn">
+                    <button>Successful</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                <% } %>
+
+        <% if(error && error.length) { %>
+            <div class="error-msg">
+                <div class="color">
+                    <div class="msg-box">
+                        <div class="msg-icon">
+                            <img src="/images/erro1.png">
+                            <h1>Oops!</h1>
+                        </div>
+                        <div class="msg-body">
+                            <p class="">
+                                <%= error %>
+                            </p>
+                        </div>
+                        <div class="E-msg-btn">
+                            <button>Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+                <!-- Flash message from frontend -->
+                <div class="success-msg sess displaynome">
+                    <div class="color">
+                        <div class="msg-box">
+                            <div class="msg-icon">
+                                <img src="/images/susscs.png">
+                                <h1>Yey!</h1>
+                            </div>
+                            <div class="msg-body">
+                                <p class="success-message"></p>
+                            </div>
+                            <div class="S-msg-btn">
+                                <button>Successful</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="error-msg err displaynome">
+                    <div class="color">
+                        <div class="msg-box">
+                            <div class="msg-icon">
+                                <img src="/images/erro1.png">
+                                <h1>Oops!</h1>
+                            </div>
+                            <div class="msg-body">
+                                <p class="error-message"></p>
+                            </div>
+                            <div class="E-msg-btn">
+                                <button>Try Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+                <script>
+                    document.querySelectorAll(".success-msg, .error-msg").forEach((msg) => {
+                        // setTimeout(() => {
+                        //     msg.style.display = "none";
+                        // }, 5000);
+
+                        msg.addEventListener("click", () => {
+                            msg.style.display = "none";
+                        });
+                    });
+
+                    document.querySelectorAll(".E-msg-btn button, .S-msg-btn button").forEach((btn) => {
+                        btn.addEventListener("click", (e) => {
+                            e.target.closest(".error-msg, .success-msg").style.display = "none";
+                        });
+                    });
+                    let errbox = document.querySelector('.error-msg')
+
+                    let errmsg = document.querySelector('.error-message')
+                                                        let sessbox = document.querySelector('.success-msg')
+                    let sesmsg = document.querySelector('.success-message')
+
+                </script>
+                <script>
+                    const spiner = document.querySelector(".loading-overlay")
+                   // spiner.style.visibility = "hidden"
+
+
+                    document.querySelector(".loading-overlay").style.visibility = "visible";
+
+
+window.addEventListener('load', function() {
+ document.querySelector(".loading-overlay").style.visibility = "hidden";
+});
+
+
+                </script>

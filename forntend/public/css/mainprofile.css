@@ -1,0 +1,383 @@
+
+*{
+
+    cursor: url("/images/ccc.png"), pointer;
+  
+   
+}
+
+
+section {
+
+    
+    position: relative;
+    height: fit-content;
+    width: 100vw;
+    height: fit-content;
+    overflow: hidden;
+    background-image: linear-gradient(100deg, var(--e-global-color-btn-red) -80%, var(--e-global-color-dark-icons-background) 38%);
+    margin: auto;
+    display: flex;
+
+
+
+
+}
+ .tintt{
+
+    position: absolute;
+    line-height: 1
+} 
+
+
+.tintt img{
+
+    line-height: 100;
+}
+     
+.profile {
+
+    display: flex;
+    width: 80%;
+    height: fit-content;
+    /* background-color: aqua; */
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    /* position: relative; */
+}
+
+
+
+.profile-left{
+
+    width: 33%;
+    /* background-color: #723131; */
+    margin: auto;
+    
+   
+}
+
+
+.new-add{
+
+    /* border: 1px solid rgb(170, 0, 0); */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+
+
+}
+
+.profile-box-t{
+
+    /* border: 1px solid rgb(235, 14, 43); */
+    background-color: rgba(18, 17, 17);
+    text-align: center;
+    width: 80%;
+    height: 60%;
+    margin-top: 170px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+
+}
+
+
+.profile-box{
+
+    /* border: 2px solid rgb(189, 255, 8); */
+    text-align: center;
+    width: 100%;
+    height: 70%;
+    margin-top: 120px;
+   
+
+} 
+
+.profile-icon{
+
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 150px;
+    /* background-color: blue; */
+    background-color: #101010;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    /* display: none; */
+    border: 5px solid white;
+
+
+}
+
+.profile-icon-t{
+
+    width: 280px;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 150px;
+    /* background-color: blue; */
+    background-image: linear-gradient(130deg, var(--e-global-color-yellow-buttons) 0%, var(--e-global-color-puple-active) 38%);
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /* display: none; */
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+   
+
+
+}
+
+.right-contain{
+
+    width: 60%;
+    margin: auto;
+    /* background: rgb(89, 0, 255); */
+}
+
+
+
+.profile-right{
+    
+    /* background-color: rgb(128, 145, 55); */
+    background-color: rgba(18, 17, 17, 0.855);
+    /* background-color: #af4444; */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+  
+   
+}
+
+/* .profile-right:hover{
+    background: wheat;
+    cursor: pointer;
+} */
+
+.profile-right h5{
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+} 
+
+
+.profile-right h1{
+
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: white;
+   
+}
+
+
+.profile-right h3{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+}
+
+.profile-right p{
+
+    font-size: 1rem;
+
+    margin: 0%;
+    width: 80%;
+    color: white;
+}
+
+.profile-right button{
+    width: 150px;
+    height: 40px;
+    font: 1em sans-serif;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: red;
+    font-weight: bolder;
+    color: white;
+    border: none;
+ 
+}
+
+
+.social-profile ul {
+
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    width: 90%;
+    
+}
+
+
+.social-profile li:hover  {
+    background: rgb(203, 35, 35) ;
+    cursor: pointer !important;
+
+}
+
+
+.social-profile li {
+
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    border-radius: 50px ;
+    background-color: rgba(58, 59, 63, 0.438 );
+    transition: background 0.3s ease, box-shadow 0.3s ease ;
+}
+
+
+
+
+
+@media (max-width: 776px) {
+
+    
+/* 12pro xr  */
+
+    /* @media (max-width: 776px) { */
+
+
+
+    .profile{
+        height: fit-content;
+        /* background-color: #2d4a99; */
+        flex-direction: column;
+        gap: 50px;
+        padding: 20px;
+        width: 95%;
+    }
+
+    .profile-left{
+        /* background-color: green; */
+        width: 100%;
+        /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    }
+
+    .profile-icon-t{
+
+        width: 200px;
+        height: 200px;
+     
+       
+    }
+
+    .profile-icon{
+        width: 170px;
+        height: 170px;
+
+    }
+
+    .profile-box-t{
+       margin-top: 90px;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+    
+    }
+
+    .profile-box{
+        height:  50%;
+
+    }
+
+    .profile-box h3{
+
+        font-size: 0.9rem;
+
+    }
+    .profile-box p{
+
+        font-size: 0.7rem;
+    }
+
+
+
+    .profile-right{
+
+
+
+        margin: auto;
+        /* background-color: #317262; */
+
+    }
+
+    .profile-right h5{
+        font-size: 0.7rem;
+    }
+
+    .profile-right h1{
+        font-size: 1rem;
+    }
+
+    .profile-right h3{
+        font-size: 1.1rem;
+    }
+
+    .profile-right p{
+        font-size: 0.7rem;
+        /* background: red; */
+        width: 98%;
+    }
+
+    .profile-right button{
+        width: 100px;
+        height: 28px;
+        font: 0.7em sans-serif;
+    }
+    .social-profile{
+        /* background-color: #726631; */
+    }
+   .profile-right .social-profile label{
+
+        font-size: 0.7rem;
+        color: rgb(236, 130, 1);
+        display: none;
+
+    }
+
+
+    .right-contain{
+      
+       width: 95%;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

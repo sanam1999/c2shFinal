@@ -1,0 +1,835 @@
+<% layout("/layouts/boilerplates.ejs") %>
+    <!-- HEADER-SECTION -->
+     <style>
+ .imageOuter {
+    overflow: hidden;
+    height: 500px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageuser {
+    position: relative;
+    width: 100%; /* Make the image responsive */
+    height: 100%; /* Maintain the height within the container */
+    object-fit: cover; /* Ensures the image fits without distortion */
+}
+
+
+     </style>
+    <div class="home-header-section">
+        <header class="header home-header-section">
+            <div class="main-header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                                class="logo" /></a>
+                        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                        href="/">Home</a>
+                                </li>
+                                <!-- <span class="sr-only">(current)</span> -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-decoration-none navbar-text-color" href="/about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                                </li>
+                                <li class="nav-item dropdown redlight-dropdown ">
+                                    <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                    <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Events</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Up
+                                                    coming Events</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Blogs</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Projects</a>
+                                            </li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Notice</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <% if(curUser && (curUser.role =="communityMember" || curUser.role =="admin")){ %>
+                                <li class="nav-item dropdown redlight-dropdown ">
+                                    <a class="nav-link dropdown-toggle " href="/account" id="navbarDropdown2" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control Panel</a>
+                                    <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/admin/distributecertification">Certificate</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/account">Account</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/account/promotion">Promotion & Users</a></li>
+                                           
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <% } %>
+                                <li class="nav-item navbar-text-color "><a
+                                        class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                        href="/und">Courses</a></li>
+                                <li class="nav-item navbar-text-color "><a
+                                        class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                        href="/und">Meetings</a></li>
+                                        <li class="nav-item ">
+                                            <a class="nav-link text-decoration-none navbar-text-color " href="/contactus">Contact
+                                                Us</a>
+                                        </li>
+                            </ul>
+                            <hr>
+                            <ul class="navbar-nav ">
+                                <li class="nav-item dropdown redlight-dropdown">
+                                    <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">Profile</a>
+                                    <div class="dropdown-menu dropdown-content-redlight">
+                                        <ul class="list-unstyled">
+                                            <% if(!curUser){%>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                        href="/user/login">Login</a>
+                                                </li>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                        href="/user/signup">Sing
+                                                        Up</a></li>
+                                                <% } if(curUser){%>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                            href="/profile">Profile</a></li>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                            href="/user/logout">Log
+                                                            out</a></li>
+                                                    <% }%>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- BANNER-SECTION -->
+        <div class="home-banner-section overflow-hidden">
+            <div class="banner-container-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-md-0 mb-4 text-md-left text-center">
+                            <div class="home-banner-text" data-aos="fade-up">
+                                <h5 class="text-white artificial-text">Cyber Security Solutions for</h5>
+                                <h1 class="text-white">Organizations with Mission Critical Infrastructure
+                                </h1>
+                                <p class="text-white banner-paragraph">
+                                    Protecting critical infrastructure requires specialized expertise and advanced
+                                    security measures. Our comprehensive
+                                    cybersecurity solutions are designed to safeguard your organization from evolving
+                                    threats, ensuring resilience,
+                                    compliance, and operational continuity.</p>
+                                <div class="banner-btn discover-btn-banner">
+                                    <a href="#" class="text-decoration-none">Discover More</a>
+                                    <a href="#" class="text-decoration-none play-button"><i
+                                            class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                            <div class="social-icons" data-aos="zoom-out-left">
+                                <ul class="list-unstyled">
+                                <li><a href="https://web.facebook.com/c2shorizon" target="_blank" class="text-decoration-none "><i
+                                            class="fa-brands fa-square-facebook  social-networks"></i></a></li>
+                                <li><a href="https://github.com/shrestha1999" target="_blank" class="text-decoration-none "><i
+                                            class="fa-brands fa-github social-networks"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/c2sh/" target="_blank" class="text-decoration-none "><i
+                                            class="fa-brands fa-linkedin social-networks"></i></a></li>
+                                <li><a href="https://www.instagram.com/c2sh.insta?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                        target="_blank" class="text-decoration-none "><i class="fa-brands fa-square-instagram social-networks"></i></a>
+                                </li>
+                                </ul>
+                            </div>
+                        </div
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="banner-img-content position-relative" data-aos="fade-up">
+                                <figure class="banner-img mb-0 wow slideInRight" data-wow-duration="2s">
+                                    <img class="img-fluid banner-img-width" src="/images/banner-img.png" alt="" />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CARDS-SECTION -->
+                    <!-- <div class="cards-section overflow-hidden">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 mb-md-0 mb-4 text-md-left text-center">
+                                    <div class="cards-outer outer-card1" data-aos="fade-up">
+                                        <h6 class="heading-background">virtual events</h6>
+                                        <p class="card-heading-p vertical-bar-line">Cum sociis natoque penatibus et
+                                            magnisd
+                                            is parturient montes nasc.</p>
+                                        <p class="date-p">August 11, 2021</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 mb-md-0 mb-4 text-md-left text-center">
+                                    <div class="cards-outer outer-padding-left outer-card2" data-aos="fade-up">
+                                        <h6 class="heading-background">new report</h6>
+                                        <p class="card-heading-p vertical-bar-line">Cum sociis natoque penatibus et
+                                            magnisd
+                                            is parturient montes nasc.</p>
+                                        <p class="date-p">August 11, 2021</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 mb-md-0 mb-4 text-md-left text-center"
+                                    data-aos="fade-up">
+                                    <div class="outer-padding-left-last outer-card3">
+                                        <h6 class="heading-background">expert panel</h6>
+                                        <p class="card-heading-p">Cum sociis natoque penatibus et magnisd is parturient
+                                            montes nasc.</p>
+                                        <p class="date-p">August 11, 2021</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ABOUT-US_SECTION -->
+    <section class="about-us-section-start">
+        <div class="about-right-icon position-relative" data-aos="fade-right" data-aos-offset="300"
+            data-aos-easing="ease-in-sine">
+            <figure class="whyus-icon"><img src=".//images/about-us-section-right-icon.png" alt="" class="img-fluid">
+            </figure>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">Why Choose Us</h3>
+                    <p class="text-center">Explore our range of services designed to strengthen your cybersecurity
+                        posture and protect your digital assets.
+
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content cbox " data-aos="fade-up" data-aos-anchor-placement="bottom-bottom"
+                        style="height: 21rem;">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-round-icon1.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Security Services</h4>
+                        <p class="security-services-p">Donec pede justo, fringilla vel, aliquet nec vulputate eget,
+                            arcu. In
+                            enim justo, rhoncus ut imperdiet.</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content cbox" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0 icon-color"><img src=".//images/about-round-icon2.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Data Privacy</h4>
+                        <p class="security-services-p">We prioritize your privacy, using advanced security to protect your personal data at all times.</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content cbox" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-round-icon3.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Industry Certified</h4>
+                        <p class="security-services-p">Integer tincidunt Cras dapibus bivamus ele mentum semper
+                            nisienean
+                            vulputate eleife nd tellusenean leo ligula.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CYBER-SECURITY-SECTION -->
+    <section class="cyber-security-section overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <div class="cyber-content-img" data-aos="fade-up-left">
+                        <figure class="mb-0"><img src=".//images/cyber-security-left-img.png" alt=""
+                                class="cyber-security-provider-img">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="cyber-content" data-aos="fade-up-right">
+                        <h3>Advanced <span class="cyber-text">Cyber Security</span> Provider</h3>
+                        <p class="security-services-p"> We specialize in providing cutting-edge cybersecurity solutions,
+                            ensuring the protection of your organization's critical
+                            assets. Our services are designed to address the most complex security challenges,
+                            safeguarding your systems from
+                            evolving threats.</p>
+                        <p class="security-services-p cyber-p-margin-bottom">Proactive strategies and advanced
+                            technology safeguard your infrastructure's security.</p>
+                        <div class="cyber-contact-btn">
+                            <a href="/contactus" class="text-decoration-none">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- boxes-section -->
+    <div class="about-us-section-start cyber-boxes-section overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="about-us-content" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/cyber-section-icon2.png" alt="">
+                            </figure>
+                        </div>
+
+                        <h3 class="counetr-heading"><span class="counter">
+                                <%= Courses %>
+                            </span><span class="cyber-counter">+</span>
+                        </h3>
+                        <h5 class="cyber-boxes-text">Courses</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="about-us-content" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0 icon-color"><img src=".//images/cyber-section-icon1.png" alt="">
+                            </figure>
+                        </div>
+                        <h3 class="counetr-heading"><span class="counter">
+                                <%=eventcount %>
+                            </span><span class="cyber-counter clients-protect">+</span>
+                        </h3>
+                        <h5 class="cyber-boxes-text">Events</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="about-us-content" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/cyber-section-icon4.png" alt="">
+                            </figure>
+                        </div>
+                        <h3 class="counetr-heading"><span class="counter">
+                                <%= verifiedCount%>
+                            </span><span class="cyber-counter cyber-percent">+</span></h3>
+                        <h5 class="cyber-boxes-text">Members</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="about-us-content" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/cyber-section-icon4.png" alt="">
+                            </figure>
+                        </div>
+                        <h3 class="counetr-heading"><span class="counter">
+                                <%= communityMemberCount %>
+                            </span><span class="cyber-counter expert-team">+</span></h3>
+                        <h5 class="cyber-boxes-text">Community Members</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CYBER-SECURITY-SOLUTION -->
+    <section class="cyber-security-section cyber-security-section2 overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="cyber-content" data-aos="fade-up-left">
+                        <h3>Providing Best <span class="cyber-text">Cyber Security </span>Solutions</h3>
+                        <p class="security-services-p">Our mission is to deliver top-tier cybersecurity solutions that
+                            safeguard your digital environment. We offer a
+                            comprehensive range of services, from threat intelligence to vulnerability assessments,
+                            designed to protect against
+                            cyber threats and enhance your security posture. With a focus on quality, reliability, and
+                            innovation, we empower
+                            individuals and organizations to navigate the digital world securely and confidently.</p>
+
+                        <div class="cyber-contact-btn">
+                            <a href="/contact" class="text-decoration-none">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-12 text-md-right text-center">
+                    <div class="cyber-content-img-right" data-aos="fade-up-right">
+                        <figure class="mb-0"><img src=".//images/cyber-security-right-img.png" alt="" class="">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ABOUT-US_SECTION2 -->
+    <section class="about-us-section-start about-us-section-2 overflow-hidden">
+        <div class="about-right-icon position-relative">
+            <figure class="about2-left-img"><img src=".//images/about-section2-left-img.png" alt="" class="img-fluid">
+            </figure>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-center offer-section-title" data-aos="flip-up">What We Offer</h3>
+                    <p class="text-center" data-aos="fade-left">Our cybersecurity services are designed to enhance your
+                        educational journey, equipping you with the skills and knowledge
+                        needed for a secure digital experience.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content about-margin-bottom cboc" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-section2-icon1.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>E-Certificate of Achievement</h4>
+                        <p class="security-services-p">Receive a personalized E-Certificate to celebrate your successful
+                            participation in club activities, enhancing your
+                            professional profile.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content about-margin-bottom cboc" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0 icon-color"><img src=".//images/about-section2-icon2.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>LinkedIn Achievement Badge</h4>
+                        <p class="security-services-p">Earn a LinkedIn badge to showcase your skills and active
+                            involvement in our cybersecurity club, helping you stand out to
+                            future employers.</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content about-margin-bottom cboc" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-section2-icon3.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Exclusive Discounts on Club Merchandise</h4>
+                        <p class="security-services-p">Enjoy special discounts on select club merchandise, so you can
+                            proudly represent your club with quality gear.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content cbox" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-section2-icon4.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Premium Access to Cybersecurity Courses and Books</h4>
+                        <p class="security-services-p">Gain access to comprehensive courses and top-rated books on
+                            cybersecurity to
+                            deepen your knowledge and advance your
+                            skills.</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content cbox" data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-round-icon1.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Hands-On Experience with Real-World Projects</h4>
+                        <p class="security-services-p">Build a strong portfolio and gain practical experience by working
+                            on real-world projects alongside club members and
+                            mentors.</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-us-content cbox " data-aos="fade-up">
+                        <div class="icons-rounded-box">
+                            <figure class="mb-0"><img src=".//images/about-section2-icon6.png" alt="">
+                            </figure>
+                        </div>
+                        <h4>Industry Field Visits for Professional Insights</h4>
+                        <p class="security-services-p">Join exclusive field visits to cybersecurity firms and industry
+                            leaders, gaining valuable insights and networking
+                            opportunities.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Accordian-Section -->
+    <section class="cyber-security-section accordian-section overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 ">
+                    <div class="faq-content-img" data-aos="fade-right">
+                        <figure class="mb-0"><img src=".//images/accordian-left-img.png" alt="" class="">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 ">
+                    <div class="cyber-content accordian-text" data-aos="fade-up">
+                        <h3>General Questions Frequently Asked Questions?</h3>
+                        <div class="accordian-inner">
+                            <div id="accordion1">
+                                <div class="accordion-card">
+                                    <div class="" id="headingFour">
+                                        <a href="#" class="btn btn-link text-decoration-none" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="false"
+                                            aria-controls="collapseFour">
+                                            <h5 class="faq-btn-text">How Can I Safely Browse The Internet?</h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" aria-labelledby="headingFour">
+                                        <div class="card-body">
+                                            <p class="text-left accordian-text-color">
+                                                To safely browse the internet, use strong passwords, enable two-factor
+                                                authentication, avoid suspicious links, and use
+                                                secure networks.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="cyber-content accordian-text">
+                        <div class="accordian-inner">
+                            <div id="accordion2">
+                                <div class="accordion-card">
+                                    <div class="" id="headingFive">
+                                        <a href="#" class="btn btn-link collapsed text-decoration-none"
+                                            data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
+                                            aria-controls="collapseFive">
+                                            <h5 class="faq-btn-text">How Does Secuvant's Co-managed Security Model Work?
+                                            </h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
+                                        <div class="card-body">
+                                            <p class="text-left accordian-text-color">
+                                                Secuvant's co-managed security model combines in-house and Secuvant's
+                                                expertise to enhance cybersecurity, providing
+                                                collaborative management and protection.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="cyber-content accordian-text">
+                        <div class="accordian-inner">
+                            <div id="accordion3">
+                                <div class="accordion-card">
+                                    <div class="" id="headingSix">
+                                        <a href="#" class="btn btn-link collapsed text-decoration-none"
+                                            data-toggle="collapse" data-target="#collapseSix" aria-expanded="false"
+                                            aria-controls="collapseSix">
+                                            <h5 class="faq-btn-text">What Type Frequency Of Alerts And Notifications
+                                                Will
+                                                Receive?</h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix">
+                                        <div class="card-body">
+                                            <p class="text-left accordian-text-color">
+                                                The frequency of alerts and notifications depends on the system
+                                                settings, ranging from real-time to daily or weekly
+                                                updates.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="cyber-content accordian-text">
+                        <div class="accordian-inner">
+                            <div id="accordion4">
+                                <div class="accordion-card">
+                                    <div class="" id="headingSeven">
+                                        <a href="#" class="btn btn-link collapsed text-decoration-none"
+                                            data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false"
+                                            aria-controls="collapseSeven">
+                                            <h5 class="faq-btn-text">How Is Our Data Stored And Protected And For How
+                                                Long?
+                                            </h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven">
+                                        <div class="card-body">
+                                            <p class="text-left accordian-text-color">
+                                                Our data is securely stored using encryption, with access controlled
+                                                through strict authentication protocols. We retain
+                                                data for the duration necessary to fulfill legal, operational, and
+                                                contractual obligations, ensuring it is securely
+                                                disposed of when no longer needed.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT-TEAM-SECTION -->
+
+
+    <section class="about-us-section-start about-teams-section overflow-hidden">
+        <div class="about-right-icon position-relative" data-aos="fade-up-right">
+            <figure class="whyus-icon"><img src=".//images/about-us-section-right-icon.png" alt="" class="img-fluid">
+            </figure>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text-center" data-aos="fade-up">Our Community</h3>
+                    <p class="text-center" data-aos="fade-up-left"></p>
+                </div>
+            </div>
+            <div class="row">
+                <% sortedUsers.forEach((user)=> { %>
+                <a href="/profile?id=<%=user._id %>">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="about-teams-inner" data-aos="fade-up">
+                        <div class="about-team">
+                            <div class="icons-rounded-box">
+                                
+                                <figure class="mb-0 imageOuter"><img class="imageuser"  src="<%= user.userInfo.img.url %>" alt=""
+                                        class="img-fluid teams-img-border">
+                                </figure>
+                            </div>
+                        </div>
+                        <h4 class="about-team-members-h4">
+                            <%= user.name %>
+                        </h4>
+                        <p class="about-team-title">
+                            <%= user.userInfo.cybersecurityInterests[0] %>
+                        </p>
+                        <p class="teams-section-p">
+                            <%= user.userInfo.faculty %>
+                        </p>
+                        <div class="social-icons teams-social-icons">
+                            <ul class="list-unstyled">
+                                <li><a href=" <%= user.userInfo.socialMedia.facebook %>" target="_blank" class="text-decoration-none"><i
+                                            class="fa-brands fa-square-facebook  social-networks"></i></a></li>
+                                <li><a href=" <%= user.userInfo.socialMedia.X %>" target="_blank" class="text-decoration-none"><i
+                                            class="fa-brands fa-square-twitter social-networks"></i></a></li>
+                                <li><a href=" <%= user.userInfo.socialMedia.linkedin %>" target="_blank" class="text-decoration-none"><i
+                                            class="fa-brands fa-linkedin social-networks"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            
+                    <% }) %>
+                    </div>
+                    
+                    </div>
+                    
+    </section>
+
+    <!-- Blogs-Section -->
+    <!-- <section disabled class="about-us-section-start blogs-section-starts overflow-hidden"
+        style="pointer-events: none; opacity: 0.8;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text-center" data-aos="fade-up">Latest News & Blog</h3>
+                    <p class="text-center" data-aos="fade-up-left">Lorem ipsum dolor sit amet consectetuer adipiscing
+                        elitenean commodo ligula eget dolorenean massa.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="blogs-section">
+                        <a href="single-post.html">
+                            <div class="images-blog" data-aos="fade-up">
+                                <figure class="mb-0"><img class="img-fluid" src=".//images/blog-section-img1.png"
+                                        alt="">
+                                </figure>
+                            </div>
+                            <h5 class="blogs-h5">Protect Your Workplace From Cyber Attacks</h5>
+                            <p class="blogs-p">Nullam dictum felis eu pede mollis pre tium Integer tinciduntras dapibusv
+                                enean vulputate eleifend tellus.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="blogs-section">
+                        <a href="single-post.html">
+                            <div class="images-blog" data-aos="fade-up">
+                                <figure class="mb-0"><img class="img-fluid" src=".//images/blog-section-img2.png"
+                                        alt="">
+                                </figure>
+                            </div>
+                            <h5 class="blogs-h5">The Security Risks Of Changing Package Owners
+                            </h5>
+                            <p class="blogs-p">Quisque rutruma enean imperdiet etiam ultricies nisi vel augue curabitur
+                                unisi nam eget dui etiam rhoncus.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="blogs-section">
+                        <a href="single-post.html">
+                            <div class="images-blog" data-aos="fade-up">
+                                <figure class="mb-0"><img class="img-fluid" src=".//images/blog-section-img3.png"
+                                        alt="">
+                                </figure>
+                            </div>
+                            <h5 class="blogs-h5">Avoid Mistakes In Social Media Posts</h5>
+                            <p class="blogs-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Form-Section -->
+    <section class="blogs-section-starts form-section-starts overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="form-section" data-aos="fade-up">
+                        <h3 class="text-center" data-aos="fade-up">Subscribe Our Newsletter</h3>
+                        <p class="text-center form-section-p" data-aos="fade-up-left">Stay updated with the latest news,
+                            insights, and special
+                            offers. Join our community and never miss an update!</p>
+                            <form class="input-group mb-3 input-field-form" id="subscribeForm">
+                                <input type="email" name="email"  class="form-control input-form-input"
+                                    placeholder="Enter your email address">
+                                <div class="input-group-append form-button">
+                                    <button class="btn btn-form-section" type="submit">Subscribe</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Get the current page path
+        const currentPath = window.location.pathname;
+
+        const pathname = {
+            '/profile/edit': 'editprofile',
+            '/': 'Home',
+            '/user/login': 'Login',
+            '/profile': 'Profile',
+            '/user/signup': 'Signup',
+            '/account': 'Account',
+            '/user/signup': 'Signup',
+            '/user/signup': 'Signup',
+            '/contactus': 'Contact Us'
+
+        };
+        // document.querySelectorAll('.nav-item').forEach(item => {
+        //     item.classList.remove('active');
+        // });
+        if (pathname[currentPath]) {
+            document.querySelector('.title').innerText = pathname[currentPath];
+
+        }
+        let navItem
+        if (currentPath == "/" || currentPath == "/account/promotion" || currentPath == "/account" || currentPath == "/profile") {
+            navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement
+        } else {
+            navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement.parentElement.parentElement.parentElement
+        }
+
+        if (navItem) {
+            navItem.classList.add('active');
+        }
+
+
+    </script>
+
+<script>
+    document.getElementById('subscribeForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const email = this.elements['email'].value;
+        if (!email) {
+errbox.style.display = "block";
+errmsg.innerText = "Please enter your email address to proceed.";
+return;
+}
+
+        try {
+             spiner.style.visibility = "visible"
+            const response = await fetch('/Subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email })
+            });
+            if (response.ok) {
+                sessbox.style.display = 'block';
+                sesmsg.innerText = "Subscribed successfully!";
+            } else {
+                errbox.style.display = "block";
+                 errmsg.innerText = "Error subscribing. Please try again."
+             
+
+            }
+            spiner.style.visibility = "hidden"       
+            
+        } catch (error) {
+            errbox.style.display = "block"
+            errmsg.innerText = "An error occurred. Please try again."
+
+        }
+    });
+
+</script>

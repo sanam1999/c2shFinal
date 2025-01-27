@@ -1,0 +1,727 @@
+<% layout('layouts/boilerplates.ejs') %>
+<style>
+     *{
+        color: white;
+    }
+
+    .id{
+        display: none;
+    }
+
+    h3{
+        font-size: 2rem;
+        margin: 1rem;
+    }
+   .btndiv button{
+        padding: 5px 10px;
+        width: 5rem;
+        color: white;
+        background-color: rgb(186, 0, 0);
+        border-radius: 5px;
+        border: none;
+        margin-left: 5px;
+    }
+
+  
+
+    
+table {
+    width: 80%;
+    border-collapse: collapse; 
+    margin: 20px 0; 
+    font-family: Arial, sans-serif;
+    color: #333;
+    border: none; 
+}
+
+
+th {
+    background-color: #300101; 
+    color: white; 
+    padding: 10px 15px; 
+    text-align: left; 
+    font-size: 16px; 
+    border: none; 
+}
+
+
+td {
+    padding: 8px 15px; 
+    text-align: left; 
+    border: none; 
+}
+tr:nth-child(even) {
+    background-color: #401f1f; 
+}
+
+tr:hover {
+    background-color: #2b2b2b; 
+}
+
+
+
+
+
+tfoot td {
+    font-weight: bold; 
+    background-color: #f1f1f1; 
+    text-align: right; 
+    padding: 10px 15px;
+    border: none; 
+}
+
+
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        font-size: 14px; 
+    }
+
+    th, td {
+        padding: 8px; 
+    }
+}
+.btndiv{
+    display: flex;
+}
+
+
+.countuser{
+display: flex;
+gap: 1rem;
+margin: 2rem;
+}
+
+input {
+    border: none;
+    border-bottom: solid white 1.5px;
+    margin-left: 2rem;
+    width: 15rem;
+    background-color: transparent; 
+    color: white; 
+    padding: 0.5rem; 
+    font-size: 1rem; 
+}
+
+input:focus {
+    outline: none; 
+    border-bottom: solid #d20404 2px; 
+   
+}
+
+input {
+    transition: border-bottom 0.3s, box-shadow 0.3s;
+}
+select{
+    width: 12rem;
+    height: 1.7rem;
+    
+}
+</style>
+<div class="home-header-section">
+    <header class="header home-header-section">
+        <div class="main-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                            class="logo" /></a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ">
+                                <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                    href="/">Home</a>
+                            </li>
+                            <!-- <span class="sr-only">(current)</span> -->
+                            <li class="nav-item">
+                                <a class="nav-link text-decoration-none navbar-text-color"
+                                    href="/about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                            </li>
+
+                            <li class="nav-item dropdown redlight-dropdown ">
+                                <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Events</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Up
+                                                coming Events</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Blogs</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Projects</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Notice</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <% if(curUser && (curUser.role =="communityMember" || curUser.role =="admin")){ %>
+                            <li class="nav-item dropdown redlight-dropdown ">
+                                <a class="nav-link dropdown-toggle " href="/account" id="navbarDropdown2" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control Panel</a>
+                                <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/admin/distributecertification">Certificate</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/account">Account</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/account/promotion">Promotion & Users</a></li>
+                                       
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <% } %>
+                            <li class="nav-item navbar-text-color "><a
+                                    class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                    href="/und">Courses</a></li>
+                            <li class="nav-item navbar-text-color "><a
+                                    class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                    href="/und">Meetings</a></li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-decoration-none navbar-text-color "
+                                    href="/contactus">Contact
+                                    Us</a>
+                            </li>
+                        </ul>
+                        <hr>
+
+                        <ul class="navbar-nav ">
+                            <li class="nav-item dropdown redlight-dropdown">
+                                <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Profile</a>
+
+                                <div class="dropdown-menu dropdown-content-redlight">
+                                    <ul class="list-unstyled">
+                                        <% if(!curUser){%>
+                                            <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                    href="/user/login">Login</a>
+                                            </li>
+                                            <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                    href="/user/signup">Sing
+                                                    Up</a></li>
+                                            <% } if(curUser){%>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                        href="/profile">Profile</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                        href="/user/logout">Log
+                                                        out</a></li>
+                                                <% }%>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section>
+        
+        <% let a=0; %>
+            <% users.forEach(user=> { %>
+                <% if (user.role !=='Unverified' ) { %>
+                    <% a +=1; %>
+                        <% } %>
+                            <% }); %>
+
+                            <div class="countuser">
+                            <h3>Total User <strong> <%= users.length %></strong>
+                            </h3>
+                                <h3>Total Verified Users:<strong> <%= a %></strong>
+                                </h3>
+                                <h3>Community Member <strong><%=  communitymb.length %></strong>
+                                </h3>
+                            </div>
+                               
+
+
+                                <form action="/account/promotion" method="post" id="promotionForm">
+                                    <select name="role" id="userStatus">
+                                        <option value="all">All</option>
+                                        <option value="Unverified">Unverified</option>
+                                        <option value="Verified">Verified</option>
+                                        <option value="communityMember">Community Member</option>
+                                    </select>
+                                    <input type="text" placeholder="Name or email" name="ser" id="ser">
+                                </form>
+    </section>
+
+    <section>
+        <h3>Promotion</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Position</th>
+                    <th>Purpose</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="withdrawalTable">
+                <% users.forEach(user=> { %>
+                    <tr data-id="<%= user._id %>">
+                        <td>
+                            <p class="id">
+                                <%= user._id %>
+                            </p>
+                            <%= user.name %>
+                        </td>
+                        <td class="role">
+                            <%= user.role %>
+                        </td>
+                        <td>
+                            <%= user.username %>
+                        </td>
+
+                        <td>
+                            <select name="action" class="userStatus">
+                                <option value="Verified" <%=user.role==='Verified' ? 'selected' : '' %>>Verified
+                                </option>
+                                <option value="Unverified" <%=user.role==='Unverified' ? 'selected' : '' %>>Unverified
+                                </option>
+                                <option value="communityMember" <%=user.role==='communityMember' ? 'selected' : '' %>
+                                    >Promote to Board
+                                    Member</option>
+                                <option value="demotedboardmember" <%=user.role==='demotedboardmember' ? 'selected' : ''
+                                    %>>Demote
+                                    Board Member
+                                </option>
+                                <option value="deletedaccount" <%=user.role==='deletedaccount' ? 'selected' : '' %>
+                                    >
+                                    Delete Account
+                                </option>
+
+                            </select>
+
+
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+    </section>
+
+
+    <h3>Promotion Community Member</h3>
+
+    <input type="text" id="searchInput2" placeholder="Search by Name, Position, Email, etc." onkeyup="searchTable()">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Email</th>
+
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="withdrawalTable2">
+            <% communitymb.forEach(user=> { %>
+                <tr data-id="<%= user._id %>">
+                    <td>
+                        <p class="id">
+                            <%= user.userInfo._id %>
+                        </p>
+                        <%= user.name %>
+                    </td>
+                    <td class="role">
+                        <% if (user.userInfo && user.userInfo.teams && user.userInfo.teams.length> 0) { %>
+                            <% user.userInfo.teams.forEach(team=> { %>
+                                <span style="display: flex;">
+                                    <p class="tm">
+                                        <%= team.teamName %>
+                                    </p> -> <p>
+                                        <%= team.roles %>
+                                    </p>
+                                </span><br>
+                                <% }); %>
+                                    <% } else { %>
+                                        No teams available
+                                        <% } %>
+                    </td>
+                    <td>
+                        <%= user.username %>
+                    </td>
+                    <td>
+                        <select class="department-dropdown" name="department">
+                            <option value="" disabled selected>Select a department</option>
+                            <option value="Top Board">Top Board</option>
+                            <option value="Video Production Team">Video Production Team</option>
+                            <option value="Social Media Handling Department">Social Media Handling Department
+                            </option>
+                            <option value="Content Section">Content Section</option>
+                            <option value="Content Writers">Content Writers</option>
+                            <option value="Creative Graphic & Animation Team">Creative Graphic & Animation Team
+                            </option>
+                            <option value="Event Organizing Team">Event Organizing Team</option>
+                            <option value="Technical Team">Technical Team</option>
+                        </select>
+
+                        <select class="team-dropdown" name="team">
+                            <option value="" disabled selected>Select a team member role</option>
+                        </select>
+                    </td>
+                    <td class="btndiv">
+                        <button class="save">
+                            Save
+                        </button>
+                        <button class="remove">
+                            remove
+                        </button>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <br><br>
+</div>
+
+    <script>
+        function searchTable() {
+            const input = document.getElementById('searchInput2').value.toLowerCase();
+            const rows = Array.from(document.querySelectorAll('#withdrawalTable2 tr'));
+            const tableBody = document.getElementById('withdrawalTable2');
+console.log(input)
+            // Separate matching and non-matching rows
+            const matchingRows = [];
+            const nonMatchingRows = [];
+
+            rows.forEach(row => {
+                const textContent = row.textContent.toLowerCase();
+                if (textContent.includes(input) && input.trim() !== '') {
+                    matchingRows.push(row);
+                    row.style.backgroundColor = '#bd4040'; // Highlight matching row
+                } else {
+                    nonMatchingRows.push(row);
+                    row.style.backgroundColor = ''; // Reset background color
+                }
+            });
+
+            // Clear table body and re-append rows
+            tableBody.innerHTML = '';
+            matchingRows.forEach(row => tableBody.appendChild(row)); // Add matching rows on top
+            nonMatchingRows.forEach(row => tableBody.appendChild(row)); // Add non-matching rows below
+        }
+
+    </script>
+
+
+
+
+
+    <script>
+        const departmentTeamMap = {
+            "Top Board": [
+                "President",
+                "Vice President",
+                "Secretary",
+                "Assistant Secretary",
+                "Treasurer",
+                "Assistant Treasurer"
+            ],
+            "Video Production Team": [
+                "Presenter",
+                "Videographer",
+                "Video Editor",
+                "Script Writers"
+            ],
+            "Social Media Handling Department": [
+                "Director of Social Media Handling",
+                "Assistant Director of Social Media Handling"
+            ],
+            "Content Section": [
+                "Editor",
+                "Assistant Editor"
+            ],
+            "Content Writers": [
+                "Head",
+                "Content Writers"
+            ],
+            "Creative Graphic & Animation Team": [
+                "Head of Creative Animation",
+                "Graphic Designers"
+            ],
+            "Event Organizing Team": [
+                "Event Director",
+                "Assistant Event Director",
+                "Event Organizing Team Members"
+            ],
+            "Technical Team": [
+                "Head Team Members",
+                "Assistant Team Members"
+            ]
+        };
+
+        // Add event listeners dynamically for all rows
+        document.querySelectorAll(".department-dropdown").forEach((dropdown) => {
+            dropdown.addEventListener("change", function () {
+                const department = this.value;
+                const row = this.closest("tr");
+                const teamDropdown = row.querySelector(".team-dropdown");
+
+                // Clear previous team options
+                teamDropdown.innerHTML = '<option value="" disabled selected>Select a team member role</option>';
+
+                if (department && departmentTeamMap[department]) {
+                    departmentTeamMap[department].forEach(team => {
+                        const option = document.createElement("option");
+                        option.value = team
+                        option.textContent = team;
+                        teamDropdown.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+
+        document.querySelectorAll(".save, .remove").forEach(button => {
+            button.addEventListener("click", async function (event) {
+                const row = event.target.closest("tr");
+                const department = row.querySelector("select[name='department']").value;
+                const role = row.querySelector("select[name='team']").value;
+                const id = row.querySelector(".id").textContent.trim();
+                const elementrole = row.querySelector(".role");
+                const type = event.target.classList.value
+                const url = "/account/communityMember"
+                if (department && role && id) {
+                    try {
+                        spiner.style.visibility = "visible"
+                        const response = await fetch(url, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ department, role, id, type })
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok && !result.error) {
+                            alert("ok")
+                           
+                            if (event.target.classList.value == "save") {
+                                let html = `<span>${result.teamName} -> ${result.roles}</span><br>`;
+                                console.log(result, html)
+                                elementrole.insertAdjacentHTML('beforeend', html);
+                            } else {
+                                const spans = elementrole.querySelectorAll("span");
+                                spans.forEach(span => {
+                                    const tm = span.querySelector(".tm");
+                                    if (tm && tm.textContent.trim() === result.department) {
+                                        span.remove();
+                                    }
+                                });
+                            }
+
+                        } else {
+
+                            errbox.style.display = "block"
+                            errmsg.innerText = result.error
+                        }
+                    } catch (error) {
+
+                        errbox.style.display = "block"
+                        errmsg.innerText = 'Error fetching data:', error
+
+                    }
+                    spiner.style.visibility = "hidden";
+                } else {
+                    errbox.style.display = "block"
+                    errmsg.innerText = "All fields(department, role, id) must be selected."
+                    
+
+                }
+
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+    <script>
+
+        document.getElementById("userStatus").addEventListener("change", async (event) => {
+            const role = event.target.value;
+            await getdata("role", role);
+        });
+
+        document.getElementById("ser").addEventListener("input", async (event) => {
+            const nameOrEmail = event.target.value;
+
+            await getdata("nameOremail", nameOrEmail);
+        });
+
+        async function getdata(type, value) {
+            try {
+                spiner.style.visibility = "visible"
+                const response = await fetch("/account/promotion", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ type: type, value: value }),
+                });
+
+                if (!response.ok) {
+                    errbox.style.display = "block"
+                    errmsg.innerText = "Network response was not ok: " + response.statusText
+
+                }
+
+                const result = await response.json();
+                spiner.style.visibility = "hidden";
+                let withdrawalTable = document.querySelector('#withdrawalTable');
+                withdrawalTable.innerHTML = "";
+
+                if (result.length === 0) {
+                    let tr = document.createElement('tr');
+                    let td = document.createElement('td');
+                    td.colSpan = 4;
+                    td.innerText = "No records found";
+                    tr.appendChild(td);
+                    withdrawalTable.appendChild(tr);
+                } else {
+                    result.forEach(user => {
+                        let tr = document.createElement('tr');
+                        tr.setAttribute('data-id', user._id);
+                        tr.innerHTML = `
+                        <td><p class="id">${user._id}</p>${user.name}</td>
+                        <td class="role">${user.role}</td>
+                        <td>${user.username}</td>
+                        <td>
+                             <select name="action" class="userStatus">
+            <option value="Verified" ${user.role === 'Verified' ? 'selected' : ''}>Verified</option>
+            <option value="Unverified" ${user.role === 'Unverified' ? 'selected' : ''}>Unverified</option>
+            <option value="communityMember" ${user.role === 'promotetoboardmember' ? 'selected' : ''}>Promote to Board Member</option>
+            <option value="Verified" ${user.role === 'demotedboardmember' ? 'selected' : ''}>Demote Board Member</option>
+            <option value="deletedaccount" ${user.role === 'deletedaccount' ? 'selected' : ''}>Delete Account</option>
+        </select>
+                        </td>
+                    `;
+                        withdrawalTable.appendChild(tr);
+                    });
+                    attachUserStatusListeners();
+                }
+            } catch (error) {
+
+            }
+            spiner.style.visibility = "hidden";
+        }
+
+        function attachUserStatusListeners() {
+            const userStatusElements = document.querySelectorAll(".userStatus");
+
+            userStatusElements.forEach(select => {
+                select.addEventListener("change", async (e) => {
+                    const selectedValue = e.target.value;
+                    const userId = e.target.closest('tr').getAttribute('data-id');
+
+                    if (!selectedValue) {
+                        alert("Please select a valid status.");
+                        return;
+                    }
+
+                    if (selectedValue === "deletedaccount") {
+                        const userConfirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+                        if (!userConfirmed) {
+                            e.target.value = '';
+                            return;
+                        }
+                        e.target.closest('tr').remove();
+                    }
+
+                    try {
+                        spiner.style.visibility = "visible"
+                        const response = await fetch('/account/promotion', {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ action: selectedValue, userId: userId })
+                        });
+
+                        const result = await response.json();
+                       
+                       if(result.error){
+                        errbox.style.display = "block";
+                        errmsg.innerText = result.error;
+                        spiner.style.visibility = "hidden";
+                        return ;
+                       }
+                        if (response.ok) {
+
+                            if (selectedValue !== "deletedaccount") {
+                                e.target.closest('tr').querySelector(".role").innerText = result.role || "Unknown";
+
+                            }
+                            
+                           
+                        } else {
+                            const errorMessage = result?.error || "An error occurred.";
+                            errbox.style.display = "block";
+                            errmsg.innerText = errorMessage;
+                        }
+
+
+                    } catch (error) {
+                        errbox.style.display = "block";
+                        errmsg.innerText = "An error occurred while updating user status.";
+                    }
+                    spiner.style.visibility = "hidden";
+                });
+            });
+        }
+
+
+        attachUserStatusListeners();
+
+        async function petPromotion(type) {
+            const url = type ? `/account/communityMember/${type}` : "/account/communityMember";
+            // const                                                                                                                                                                                                                       "/account/communityMember/${$type}`:
+            try {
+                spiner.style.visibility = "visible"
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                return await response.json();;
+
+            } catch (error) {
+
+                errbox.style.display = "block"
+                errmsg.innerText = "Fetch error:", error
+            }
+            spiner.style.visibility = "hidden";
+        }
+
+
+
+
+    </script>

@@ -1,0 +1,457 @@
+<% layout("/layouts/boilerplates.ejs") %>
+    <link rel="stylesheet" type="text/css" href="/css/newlog.css">
+
+    </style>
+    <!-- HEADER-SECTION -->
+    <div class="home-header-section">
+        <header class="header home-header-section">
+            <div class="main-header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                                class="logo" /></a>
+                        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                        href="/">Home</a>
+                                </li>
+                                <!-- <span class="sr-only">(current)</span> -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-decoration-none navbar-text-color" href="/about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                                </li>
+
+                                <li class="nav-item dropdown redlight-dropdown ">
+                                    <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                    <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Events</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Up
+                                                    coming Events</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Blogs</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Projects</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Notice</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <% if(curUser && (curUser.role =="communityMember" || curUser.role =="admin")){ %>
+                                <li class="nav-item dropdown redlight-dropdown ">
+                                    <a class="nav-link dropdown-toggle " href="/account" id="navbarDropdown2" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control Panel</a>
+                                    <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/admin/distributecertification">Certificate</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/account">Account</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/account/promotion">Promotion & Users</a></li>
+                                           
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <% } %>
+                                <li class="nav-item navbar-text-color "><a class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                        href="/und">Courses</a></li>
+                                <li class="nav-item navbar-text-color "><a class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                        href="/und">Meetings</a></li>
+                                <li class="nav-item ">
+                                    <a class="nav-link text-decoration-none navbar-text-color " href="/contactus">Contact
+                                        Us</a>
+                                </li>
+                            </ul>
+                            <hr>
+
+                            <ul class="navbar-nav ">
+                                <li class="nav-item dropdown redlight-dropdown active">
+                                    <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Profile</a>
+
+                                    <div class="dropdown-menu dropdown-content-redlight">
+                                        <ul class="list-unstyled">
+                                            <% if(!curUser){%>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/login">Login</a>
+                                                </li>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/signup">Sing
+                                                        Up</a></li>
+                                                <% } if(curUser){%>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link" href="/profile">Profile</a></li>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/logout">Log
+                                                            out</a></li>
+                                                    <% }%>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+    </div>
+
+
+
+
+
+    <section class="fome_all">
+
+        <form action="/profile/edit" method="POST">
+
+
+            <h4>Edit Profile</h4>
+
+            <br>
+
+            <div class="fom_o">
+
+                <div class="fist_f">
+                    <label for="firstName">First Name:</label>
+
+                    <br>
+
+                    <input type="text" class="firstName" name="firstName" value="<%= user && user.firstName ? user.firstName : '' %>">
+
+
+                </div>
+
+                <div class="last_f">
+                    <label for="lastName">Last Name:</label>
+
+                    <br>
+
+                    <input type="text" class="lastName" name="lastName" value="<%= user && user.lastName ? user.lastName : '' %>">
+                    </div>
+
+
+            </div>
+
+
+            <br>
+
+
+            <div class="fom_oo">
+
+                <div class="sel_o">
+
+                    <label for="faculty">Faculty:</label>
+
+                    <br>
+                    <select class="faculty" name="faculty">
+                        <option value="">Select your faculty</option>
+                        <option value="Faculty of Information Technology (IT)" <%=user &&
+                            user.faculty==='Faculty of Information Technology (IT)' ? 'selected' : '' %>>Faculty of
+                            Information
+                            Technology (IT)</option>
+                        <option value="Faculty of Business and Management" <%=user && user.faculty==='Faculty of Business and Management'
+                            ? 'selected' : '' %>>Faculty of
+                            Business and
+                            Management</option>
+                        <option value="Faculty of Science" <%=user && user.faculty==='Faculty of Science' ? 'selected' : '' %>
+                            >Faculty of Science</option>
+                        <option value="Faculty of Law" <%=user && user.faculty==='Faculty of Law' ? 'selected' : '' %>
+                            >Faculty
+                            of Law</option>
+                        <option value="Faculty of Education" <%=user && user.faculty==='Faculty of Education' ? 'selected' : '' %>>Faculty of
+                            Education</option>
+                        <option value="Other" <%=user && user.faculty==='Other' ? 'selected' : '' %>>Other</option>
+                        </select>
+
+                </div>
+
+                <div class="sel_oo">
+                    <!-- student -->
+
+                    <label for="yearOfStudy">Year of Study:</label>
+                    <br>
+                    <select class="yearOfStudy" name="yearOfStudy">
+                        <option value="">Select your year of study</option>
+                        <option value="First Year" <%=user && user.yearOfStudy==='First Year' ? 'selected' : '' %>
+                            >First
+                            Year
+                        </option>
+                        <option value="Second Year" <%=user && user.yearOfStudy==='Second Year' ? 'selected' : '' %>
+                            >Second
+                            Year
+                        </option>
+                        <option value="Third Year" <%=user && user.yearOfStudy==='Third Year' ? 'selected' : '' %>
+                            >Third
+                            Year
+                        </option>
+                        <option value="Final Year" <%=user && user.yearOfStudy==='Final Year' ? 'selected' : '' %>
+                            >Final
+                            Year
+                        </option>
+                    </select>
+</div>
+
+
+</div>
+
+
+
+<br>
+
+<!-- fooo -->
+
+<div class="fom_ooo">
+
+    <div class="f_so">
+
+        <label for="studentID">Student ID:</label>
+        <br>
+        <input type="text" class="studentID" name="studentID"
+            value="<%= user && user.studentID ? user.studentID : '' %>">
+                    
+                    
+                    </div>
+                    
+                    <div class="f_soo">
+                    
+                        <label for="phoneNumber">Phone Number:</label>
+                        <br>
+                        <input type="text" class="phoneNumber" name="phoneNumber"
+                            value="<%= user && user.phoneNumber ? user.phoneNumber : '' %>">
+                    
+                    </div>
+                    
+                    
+                    </div>
+                    
+                    <br>
+                    
+                    
+                    <!-- third from -->
+                    
+                    <!-- fourth start -->
+                    
+                    <div class="fom_oooo">
+                    
+                    
+                    
+                        <div class="f_no">
+                            <label for="whatsappNumber">WhatsApp Number:</label>
+                            <br>
+                            <input type="text" class="whatsappNumber" name="whatsappNumber"
+                                value="<%= user && user.whatsappNumber ? user.whatsappNumber : '' %>">
+                        </div>
+                    
+                        <div class="f_noo">
+                    
+                            <label for="dateOfBirth">Date of Birth:</label>
+                            <br>
+                            <input type="date" class="dateOfBirth" name="dateOfBirth"
+                                value="<%= user && user.dateOfBirth ? user.dateOfBirth.toISOString().split('T')[0] : '' %>">
+                        </div>
+                    
+                    
+                    
+                    
+                    </div>
+                    
+                    <!-- fourth end -->
+                    
+                    <br>
+                    
+                    <!-- fifth start -->
+                    
+                    <div class="fom_ooooo">
+                    
+                    
+                        <div class="f_city">
+                    
+                            <label for="street">Street:</label>
+                            <input type="text" class="street" name="street"
+                                value="<%= user && user.address && user.address.street ? user.address.street : '' %>">
+                        </div>
+                    
+                    
+                    
+                        <div class="f_cityo">
+                            <label for="city">City:</label>
+                            ` <input type="text" class="city" name="city"
+                                value="<%= user && user.address && user.address.city ? user.address.city : '' %>">
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    
+                    <!-- fifth end -->
+                    
+                    <br>
+                    
+                    
+                    <div class="select_oo">
+                    
+                    
+                    
+                        <div class="f_cso">
+                            <label for="cybersecurityInterests">Cybersecurity Interests:</label>
+                            <br>
+                    
+                            <select class="cybersecurityInterests" name="cybersecurityInterests">
+                                <option value="Network Security" <%=user && user.cybersecurityInterests &&
+                                    user.cybersecurityInterests.includes('Network Security') ? 'selected' : '' %>>Network
+                                    Security
+                                </option>
+                                <option value="Ethical Hacking" <%=user && user.cybersecurityInterests &&
+                                    user.cybersecurityInterests.includes('Ethical Hacking') ? 'selected' : '' %>>Ethical
+                                    Hacking
+                                </option>
+                                <option value="Cloud Security" <%=user && user.cybersecurityInterests &&
+                                    user.cybersecurityInterests.includes('Cloud Security') ? 'selected' : '' %>>Cloud
+                                    Security
+                                </option>
+                                <option value="Forensics" <%=user && user.cybersecurityInterests &&
+                                    user.cybersecurityInterests.includes('Forensics') ? 'selected' : '' %>>Forensics
+                                </option>
+                                <option value="Privacy and Data Protection" <%=user && user.cybersecurityInterests &&
+                                    user.cybersecurityInterests.includes('Privacy and Data Protection') ? 'selected' : '' %>
+                                    >Privacy
+                                    and
+                                    Data Protection</option>
+                                <option value="Other" <%=user && user.cybersecurityInterests &&
+                                    user.cybersecurityInterests.includes('Other') ? 'selected' : '' %>>Other</option>
+
+                    </select>
+                    </div>
+
+
+
+                <div class="f_csoo">
+                    <label>Gender</label>
+                    <!-- <br> -->
+
+                    <div class="rrdio">
+                        <div>
+                            <label class="main">Male
+                                <input type="radio" name="gender" value="Male" <%= user && user.gender === 'Male' ? 'checked' : '' %>>
+                                <span class="checkbox-container"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="main">Female
+                                <input type="radio" name="gender" value="Female" <%= user && user.gender === 'Female' ? 'checked' : '' %>>
+                                <span class="checkbox-container"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="main">Other
+                                <input type="radio" name="gender" value="Other" <%= user && user.gender === 'Other' ? 'checked' : '' %>>
+                                <span class="checkbox-container"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="fom_aoooo">
+
+
+                <div class="s_i">
+                    <label for="linkedin">LinkedIn:</label>
+                    <br>
+                    <input type="text" class="linkedin" name="linkedin"
+                        value="<%= user && user.socialMedia && user.socialMedia.linkedin ? user.socialMedia.linkedin : '' %>">
+
+                </div>
+
+                <div class="s_ii">
+
+                    <label for="facebook">Facebook:</label>
+                    <br>
+                    <input type="text" class="facebook" name="facebook"
+                        value="<%= user && user.socialMedia && user.socialMedia.facebook ? user.socialMedia.facebook : '' %>">
+
+                </div>
+
+                <div class="s_iii">
+
+                    <label for="X">X (formerly Twitter):</label>
+                    <br>
+                    <input type="text" class="X" name="X"
+                        value="<%= user && user.socialMedia && user.socialMedia.X ? user.socialMedia.X : '' %>">
+
+                </div>
+                </div>
+                <br>
+                <div>
+                    <label for="description">Description</label>
+                    <br>
+                    <textarea id="message" cols="10" rows="5" class="form-control" name="description" placeholder="About you" required
+                        maxlength="200" minlength="100"><%= user && user.description ? user.description : '' %></textarea>
+            </div>
+
+
+            <br>
+
+            <!-- end social -->
+
+            <div class="form_bttn">
+                <button type="submit" class="s_btn">Update Profile</button>
+                <button type="reset" class="r_btn">Crear </button>
+            </div>
+            </form>
+
+        <!-- side tint -->
+
+
+        <div class="tintt">
+            <img src="/images/footer-right.png" alt="" class="">
+        
+        </div>
+
+
+
+
+
+
+    </section>
+
+
+    <!-- new -->
+
+    <script>
+        // Get the current page path
+        const currentPath = window.location.pathname;
+
+                                const pathname = {
+                                    '/profile/edit': 'editprofile',
+                                    '/': 'Home',
+                                    '/user/login': 'Login',
+                                    '/profile': 'Profile',
+                                    '/user/signup': 'Signup',
+                                    '/account': 'Account',
+                                    '/user/signup': 'Signup',
+                                    '/user/signup': 'Signup',
+
+        };
+
+            if (pathname[currentPath]) {
+                document.querySelector('.title').innerText = pathname[currentPath];
+
+        }
+
+
+    </script>

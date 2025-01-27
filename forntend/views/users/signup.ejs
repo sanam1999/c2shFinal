@@ -1,0 +1,300 @@
+<% layout("/layouts/boilerplates.ejs") %>
+<link rel="stylesheet" href="/css/signup.css">
+<style>
+    .password-container {
+    position: relative;
+    margin-left: 0.2rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 35px;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: white;
+  
+
+}
+
+.descrptt{
+        text-align: justify;
+    }
+
+</style>
+<!-- HEADER-SECTION -->
+<div class="home-header-section">
+    <header class="header home-header-section">
+        <div class="main-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                            class="logo" /></a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ">
+                                <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                    href="/">Home</a>
+                            </li>
+                            <!-- <span class="sr-only">(current)</span> -->
+                            <li class="nav-item">
+                                <a class="nav-link text-decoration-none navbar-text-color" href="/about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                            </li>
+
+                            <li class="nav-item dropdown redlight-dropdown ">
+                                <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Events</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Up
+                                                coming Events</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Blogs</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Projects</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Notice</a></li>
+
+                                    </ul>
+                                    </div>
+                                    </li>
+                                    <% if(curUser && (curUser.role =="communityMember" || curUser.role =="admin")){ %>
+                                    <li class="nav-item dropdown redlight-dropdown ">
+                                        <a class="nav-link dropdown-toggle " href="/account" id="navbarDropdown2" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control Panel</a>
+                                        <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                            <ul class="list-unstyled">
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/admin/distributecertification">Certificate</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/account">Account</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/account/promotion">Promotion & Users</a></li>
+                                               
+    
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <% } %>
+                                    <li class="nav-item navbar-text-color "><a class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                            href="/und">Courses</a></li>
+                                    <li class="nav-item navbar-text-color "><a class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                            href="/und">Meetings</a></li>
+                                            <li class="nav-item ">
+                                                <a class="nav-link text-decoration-none navbar-text-color " href="/contactus">Contact
+                                                    Us</a>
+                                            </li>
+                                    </ul>
+                                    <hr>
+
+                        <ul class="navbar-nav ">
+                            <li class="nav-item dropdown redlight-dropdown">
+                                <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">Profile</a>
+
+                                <div class="dropdown-menu dropdown-content-redlight">
+                                    <ul class="list-unstyled">
+                                        <% if(!curUser){%>
+                                            <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/login">Login</a>
+                                            </li>
+                                            <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/signup">Sing
+                                                    Up</a></li>
+                                            <% } if(curUser){%>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link" href="/profile">Profile</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/logout">Log
+                                                        out</a></li>
+                                                <% }%>
+
+                                    </ul>
+                                    </div>
+                                    </li>
+                                    </ul>
+
+                    </div>
+                    </nav>
+                    </div>
+                    </div>
+                    </header>
+
+</div>
+<section class="tint">
+
+    <div class="tintt">
+
+        <div class="form_all">
+
+
+            <div class="form_right">
+                <form action="/user/signup" method="post">
+                    <h3>Sign UP</h3>
+
+                    <div class="input">
+                        <!-- Name -->
+                        <input type="text" required name="name" class="frm-control" id="inputName"
+                            placeholder="Enter your name" ame="user[name]" autocomplete="name" />
+
+                        <!-- Email -->
+                        <input type="email" required name="username" class="frm-control" id="inputEmail"
+                            placeholder="Enter your email" name="user[username]" autocomplete="username" />
+
+                        <!-- Password -->
+                        <div class="password-container">
+                            <input type="password" required name="password" class="frm-control" id="inputPassword"
+                                placeholder="Enter your password" autocomplete="current-password" />
+                            <span toggle="#inputPassword" class="fa fa-eye password-toggle" id="togglePassword"></span>
+                        </div>
+                        
+                        <!-- Confirm Password -->
+                        <div class="password-container">
+                            <input type="password" required name="confirm_password" class="frm-control" id="inputConfirmPassword"
+                                placeholder="Confirm your password" autocomplete="new-password" />
+                            <span toggle="#inputConfirmPassword" class="fa fa-eye password-toggle" id="toggleConfirmPassword"></span>
+                        </div>
+                        
+                    </div>
+                    <button type="submit" class="btn btn-success mb-5">SIGN UP</button>
+
+<div class="ancr">
+    <a href="">Forget password</a>
+</div>
+</form>
+
+</div>
+<div class="form_left">
+
+    <h1>Welcome Home</h1>
+
+    <p class="descrptt">Your security is our priority. We protect your personal and financial information with top-level encryption and multi-factor authentication. For your safety, use a strong password and enable multi-factor authentication </p>
+
+    <div class="btn">
+
+        <a href="/user/login"> <button>SIGN IN</button> </a>
+
+
+    </div>
+</div>
+</div>
+
+    </div>
+
+<script>
+                        const form = document.querySelector('form');
+
+                        form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                        let status = true;
+
+                            // Get input values
+                            const passwordField = document.querySelector('input[name="password"]');
+                            const confirmPasswordField = document.querySelector('input[name="confirm_password"]');
+
+                            // Ensure elements exist
+                            if (!passwordField || !confirmPasswordField) {
+
+                                errbox.style.display = "block"
+                                errmsg.innerText = "Password or confirm password fields are missing."
+                                return;
+                            }
+
+                            const password = passwordField.value;
+                            const confirmPassword = confirmPasswordField.value;
+
+                            // Validate password length
+                            if (password.length < 8) {
+                                status = false;
+
+                                errbox.style.display = "block"
+                                errmsg.innerText = "Password is too short < 8"
+                            }
+
+                            // Validate password match
+                            if (password !== confirmPassword) {
+                            status = false;
+
+                                errbox.style.display = "block"
+                                errmsg.innerText = "Passwords do not match"
+                }
+
+                        // Check form validity
+                if (!form.checkValidity()) {
+                    status = false;
+                }
+
+                            // Submit form if validation passed
+                            if (status) {
+                                function dothis(){
+    spiner.style.visibility = "visible"
+
+}
+                        form.submit();
+                            }
+        });
+
+</script>
+<script>
+
+    const currentPath = window.location.pathname;
+
+    const pathname = {
+        '/profile/edit': 'editprofile',
+            '/': 'Home',
+            '/user/login': 'Login',
+            '/profile': 'Profile',
+            
+            '/account': 'Account',
+            '/user/signup': 'Signup',
+
+    };
+
+
+
+    if (pathname[currentPath]) {
+        document.querySelector('.title').innerText = pathname[currentPath];
+
+    }
+    let navItem
+    if (currentPath == "/listings" || currentPath == "/account/promotion" || currentPath == "/account" || currentPath == "/profile") {
+        navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement
+    } else {
+        navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement.parentElement.parentElement.parentElement
+    }
+
+    if (navItem) {
+        navItem.classList.add('active');
+    }
+</script>
+
+<script>
+    // Password visibility toggle
+const togglePassword = document.querySelector("#togglePassword");
+const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
+const password = document.querySelector("#inputPassword");
+const confirmPassword = document.querySelector("#inputConfirmPassword");
+
+togglePassword.addEventListener("click", function () {
+    // Toggle the type of the password field
+    const type = password.type === "password" ? "text" : "password";
+    password.type = type;
+    // Toggle the eye icon
+    this.classList.toggle("fa-eye-slash");
+});
+
+toggleConfirmPassword.addEventListener("click", function () {
+    // Toggle the type of the confirm password field
+    const type = confirmPassword.type === "password" ? "text" : "password";
+    confirmPassword.type = type;
+    // Toggle the eye icon
+    this.classList.toggle("fa-eye-slash");
+});
+
+</script>

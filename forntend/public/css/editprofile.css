@@ -1,0 +1,713 @@
+
+/* :root {
+    --e-global-color-white: #ffffff;
+    --e-global-color-red: #c12e2f;
+    --e-global-color-btn-red: #f43334;
+    --e-global-color-white-banner-text: #fffefe;
+    --e-global-color-grey-icons: #999999;
+    --e-global-color-yellow-buttons: #eb9500;
+    --e-global-color-primary: #161616;
+    --e-global-color-card-text: #585858;
+    --e-global-color-red-border: #ca2f30;
+    --e-global-color-red-active: #cd3030;
+    --e-global-color-dark-icons-background: #202020;
+    --e-global-color-dark-marron: #4a2424;
+    --e-global-color-black-cards-bacground: #191919;
+    --e-global-color-grey-cyber-box: #777777;
+    --e-global-color-about-teams-red: #ad2d2d;
+    --e-global-color-about-teams-background: #101010;
+    --e-global-color-stars: #666666;
+    --e-global-color-form-text: #898989;
+    --e-global-color-form: #2e1c1c;
+    --e-global-color-coming-soon: #737373;
+    background-image: linear-gradient(50deg, var(--e-global-color-btn-red) 0%, var(--e-global-color-dark-icons-background) 38%);
+} */
+
+
+
+.tintt{
+
+    position: absolute;
+    right: 0;
+    line-height: 1
+} 
+
+
+.tintt img{
+
+    line-height: 100;
+}
+
+
+.fome_all {
+
+   
+    
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-image: linear-gradient(118deg, var(--e-global-color-about-teams-red) 0%, var(--e-global-color-dark-icons-background) 38%);
+
+}
+
+
+.fome_all form {
+
+    /* border: 2px solid rgb(129, 116, 116); */
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+
+}
+
+.fome_all form h4 {
+
+    color: rgb(255, 255, 255);
+}
+
+
+.fome_all .fom_o {
+
+    /* background-color: aqua; */
+    display: flex;
+
+
+}
+
+
+.fome_all .fist_f {
+
+    /* background-color: blueviolet; */
+
+    width: 50%;
+
+
+
+}
+
+.fome_all .last_f {
+
+    /* background-color: rgb(43, 226, 83); */
+    margin-left: 5%;
+    width: 50%;
+
+
+
+}
+
+
+.fome_all .fom_o input {
+
+    width: 99%;
+    height: 2.5rem;
+    border-radius: 5px;
+border: 2px solid rgb(129, 116, 116);
+    /* color: red; */
+    outline: none;
+
+
+}
+
+.fome_all .fom_o label {
+
+    font-size: 1rem;
+    color: white;
+
+}
+
+/* selcter section */
+
+.fome_all .fom_oo {
+
+    /* background-color: aqua; */
+    display: flex;
+
+
+}
+
+.fome_all .fom_oo label {
+
+    font-size: 1rem;
+    color: white;
+    /* color: blue; */
+
+}
+
+.fome_all .sel_o {
+
+    /* background-color: blueviolet; */
+
+    width: 50%;
+
+
+
+}
+
+.fome_all .sel_oo {
+
+    /* background-color: rgb(137, 130, 143); */
+    margin-left: 5%;
+    width: 50%;
+
+}
+
+.fome_all .fom_oo select {
+
+    width: 99%;
+    height: 2.1rem;
+    border-radius: 5px;
+    border: 2px solid rgb(129, 116, 116);
+  
+}
+
+.fome_all .fom_oo select option{
+
+   background: black;
+}
+
+/* f2comple */
+
+.fome_all .fom_ooo {
+
+    /* background-color: aqua; */
+    display: flex;
+
+}
+
+.fome_all .f_so {
+
+    /* background-color: blueviolet; */
+
+    width: 50%;
+}
+
+.fome_all .f_soo {
+
+    /* background-color: rgb(199, 110, 38); */
+    margin-left: 5%;
+    width: 50%;
+}
+
+
+.fome_all .fom_ooo input {
+
+    width: 99%;
+    height: 2.5rem;
+    border-radius: 5px;
+border: 2px solid rgb(129, 116, 116);
+    outline: none;
+
+}
+
+/* fouth */
+
+.fome_all .fom_oooo {
+
+    /* background-color: aqua; */
+    display: flex;
+
+}
+
+.fome_all .f_no {
+
+    /* background-color: blueviolet; */
+
+    width: 50%;
+}
+
+.fome_all .f_noo {
+
+    /* background-color: rgb(199, 110, 38); */
+    margin-left: 5%;
+    width: 50%;
+}
+
+.fome_all .fom_oooo input {
+
+    width: 99%;
+    height: 2.5rem;
+    border-radius: 5px;
+border: 2px solid rgb(129, 116, 116);
+    outline: none;
+
+}
+
+/* end */
+
+/* start */
+
+
+.fome_all .fom_ooooo {
+
+    /* background-color: aqua; */
+    display: flex;
+
+}
+
+.fome_all .f_city {
+
+    /* background-color: blueviolet; */
+
+    width: 50%;
+}
+
+.fome_all .f_cityo {
+
+    /* background-color: rgb(199, 110, 38); */
+    margin-left: 5%;
+    width: 50%;
+}
+
+.fome_all .fom_ooooo input {
+
+    width: 99%;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 2px solid rgb(129, 116, 116);
+    outline: none;
+
+}
+
+/* end */
+
+/* social media start */
+
+.fome_all .fom_aoooo {
+
+    /* background-color: aqua; */
+    display: flex;
+
+}
+
+.fome_all .s_i {
+
+    /* background-color: blueviolet; */
+
+    width: 35%;
+}
+
+.fome_all .s_ii {
+
+    /* background-color: rgb(199, 110, 38); */
+    margin-left: 8%;
+    width: 35%;
+}
+
+.fome_all .s_iii {
+
+    /* background-color: rgb(38, 140, 199); */
+    margin-left: 8%;
+    width: 35%;
+}
+
+
+.fome_all .fom_aoooo input {
+
+    width: 98%;
+    height: 2.5rem;
+    border-radius: 5px;
+border: 2px solid rgb(129, 116, 116);
+    outline: none;
+
+}
+
+
+
+/* social media end */
+
+/* latpart */
+
+
+.fome_all .select_oo {
+
+    /* background-color: aqua; */
+    display: flex;
+
+}
+
+.fome_all .f_cso {
+
+    width: 50%;
+}
+
+
+
+
+
+
+
+.fome_all .f_csoo {
+
+    /* background-color: rgb(199, 110, 38); */
+    margin-left: 5%;
+    width: 50%;
+    overflow: hidden;
+
+}
+
+.fome_all .f_csoo .f_radio {
+
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    color: blue;
+}
+
+
+/*  */
+
+.f_csoo {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.f_csoo .rrdio {
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.f_csoo .rrdio label {
+
+    font-size: 1rem;
+}
+label {
+    color: white;
+}
+
+
+.main {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+}
+
+.main input[type=radio] {
+    visibility: hidden;
+}
+
+.checkbox-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+border: 2px solid rgb(129, 116, 116);
+}
+
+/* Hover effect */
+.main:hover input~.checkbox-container {
+    background-color: rgb(46, 46, 38);
+}
+
+/* Active effect */
+.main input:active~.checkbox-container {
+    background-color: rgb(245, 202, 13);
+}
+
+/* Checked effect */
+.main input:checked~.checkbox-container {
+    background-color: rgb(206, 17, 17);
+}
+
+/* Checkmark */
+.checkbox-container::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Display checkmark when checked */
+.main input:checked~.checkbox-container::after {
+    display: block;
+}
+
+
+
+.fome_all .f_cso select {
+
+    width: 98%;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 2px solid rgb(129, 116, 116);
+    outline: none;
+
+}
+
+.fome_all .f_cso select option{
+
+    background-color: #000;
+}
+
+
+/* latpart end */
+
+/* buttn */
+
+.form_bttn {
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.form_bttn .s_btn {
+    background-color: blue;
+    height: 3rem;
+    width: 160px;
+    border-radius: 6px;
+    color: white;
+    border: none;
+
+
+
+}
+
+.form_bttn .r_btn {
+
+    background-color: red;
+    height: 3rem;
+    width: 90px;
+    margin-left: 10px;
+    border-radius: 6px;
+    color: white;
+    border: none;
+
+
+}
+
+
+/* edit profile 412  */
+
+@media (max-width: 776px) {
+
+
+
+    .fome_all {
+
+
+        padding: 10px;
+    }
+
+    .fome_all form {
+
+        width: 95%;
+    }
+
+    .fom_o {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+
+    }
+
+    .fom_o .fist_f {
+
+
+        width: 100%;
+
+    }
+
+    .fom_o .last_f {
+
+        margin: 0px;
+        width: 100%;
+
+    }
+
+
+
+    /* second part */
+
+
+    .fom_oo {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    br {
+
+        display: none;
+    }
+
+    .fom_oo .sel_o {
+
+        width: 100%;
+    }
+
+    .fom_oo .sel_oo {
+
+        width: 100%;
+        margin: 0%;
+    }
+
+
+    /* end */
+
+
+    /* third part */
+    .fom_ooo {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fom_ooo .f_so {
+
+        width: 100%;
+        margin: 0%;
+    }
+
+    .fom_ooo .f_soo {
+
+        width: 100%;
+        margin: 0%;
+    }
+
+    /* end */
+
+    /* fourth  */
+    .fom_oooo {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fom_oooo .f_no {
+
+        width: 100%;
+    }
+
+    .fom_oooo .f_noo {
+
+        width: 100%;
+        margin: 0%;
+    }
+
+    /* end */
+
+    /* fifth */
+
+    .select_oo {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+    }
+
+    .select_oo .f_cso {
+
+        margin: 0%;
+        width: 100%;
+    }
+
+    .select_oo .f_csoo {
+
+        margin: 0%;
+        width: 100%;
+
+    }
+
+    .select_oo .f_csoo .rrdio {
+
+        flex-direction: column;
+    }
+
+
+
+    /* gender */
+
+
+    /* end */
+
+    /* last */
+    .fom_aoooo {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+
+    .fom_aoooo .s_i {
+
+        width: 100%;
+        margin: 0%;
+    }
+
+    .fom_aoooo .s_ii {
+
+        width: 100%;
+        margin: 0%;
+    }
+
+    .fom_aoooo .s_iii {
+
+        width: 100%;
+        margin: 0%;
+        margin-bottom: 10px;
+    }
+
+
+
+    /* end */
+
+
+
+
+
+
+
+
+
+}
+
+/* end */
+input {
+    background-color: transparent;
+    color: white;
+}
+
+/* end */
+
+
+select {
+    background-color: transparent;
+    color: white;
+}
+
+input:-webkit-autofill {
+    background-color: #000 !important;
+    /* Set background to match your design */
+    color: #fff !important;
+    /* Text color to ensure readability */
+    -webkit-text-fill-color: #fff !important;
+    /* Text color for autofilled content */
+    transition: background-color 5000s ease-in-out 0s;
+    /* Prevent flash */
+}

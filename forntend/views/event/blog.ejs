@@ -1,0 +1,136 @@
+<% layout("/layouts/boilerplates.ejs") %>
+    <link rel="stylesheet" type="text/css" href="/css/newlog.css">
+    <style>
+        input:-webkit-autofill {
+            background-color: #000 !important;
+            /* Set background to match your design */
+            color: #fff !important;
+            /* Text color to ensure readability */
+            -webkit-text-fill-color: #fff !important;
+            /* Text color for autofilled content */
+            transition: background-color 5000s ease-in-out 0s;
+            /* Prevent flash */
+        }
+
+        .cyber-security-section {
+            overflow: visible !important;
+        }
+    </style>
+    <!-- HEADER-SECTION -->
+
+
+
+
+
+
+
+    <section class="cyber-security-section accordian-section " style="height: auto;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11">
+                    <div class="cyber-content accordian-text" data-aos="fade-up">
+                        <h3>General Questions Frequently Asked Questions?</h3>
+                        <div class="accordian-inner">
+                            <% blogs.forEach((blog, index)=> { %>
+                                <!-- Start a flex container for each blog post -->
+                                <div class="faq-item d-flex flex-column mb-5">
+
+                                    <!-- Image at the top, with height and width styling -->
+                                    <img style=" width:auto; margin-bottom: 1rem;" id="image-<%= index %>"
+                                        src="<%= blog.images[0] %>" alt="FAQ Image" class="img-fluid"
+                                        data-images="<%= JSON.stringify(blog.images) %>" />
+
+                                    <!-- Accordion content below the image -->
+                                    <div id="accordion<%= index + 1 %>">
+                                        <div class="accordion-card">
+                                            <div id="heading<%= index + 1 %>">
+                                                <a href="#" class="btn btn-link text-decoration-none"
+                                                    data-toggle="collapse" data-target="#collapse<%= index + 1 %>"
+                                                    aria-expanded="false" aria-controls="collapse<%= index + 1 %>">
+                                                    <h5 class="faq-btn-text">
+                                                        <%= blog.question %>
+                                                    </h5>
+                                                </a>
+                                            </div>
+                                            <div id="collapse<%= index + 1 %>" class="collapse"
+                                                aria-labelledby="heading<%= index + 1 %>">
+                                                <div class="card-body">
+                                                    <p class="text-left accordian-text-color">
+                                                        <%= blog.answer %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- End of faq-item -->
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function () {
+            const imageElements = document.querySelectorAll('[id^="image-"]'); // Select all images
+
+            imageElements.forEach((imgElement) => {
+                const images = JSON.parse(imgElement.dataset.images); // Parse the images array
+                if (images.length > 1) { // Only if there are multiple images
+                    let currentIndex = 0;
+
+                    // Change the image every 5 seconds
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length; // Cycle through the images
+                        imgElement.src = images[currentIndex]; // Update the `src` attribute
+                    }, 5000);
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // Get the current page path
+        const currentPath = window.location.pathname;
+
+        const pathname = {
+            '/profile/edit': 'editprofile',
+            '/': 'Home',
+            '/user/login': 'Login',
+            '/profile': 'Profile',
+            '/user/signup': 'Signup',
+            '/account': 'Account',
+            '/user/signup': 'Signup',
+            '/user/signup': 'Signup',
+
+        };
+
+        if (pathname[currentPath]) {
+            document.querySelector('.title').innerText = pathname[currentPath];
+
+        }
+        let navItem
+        if (currentPath == "/" || currentPath == "/account/promotion" || currentPath == "/account" || currentPath == "/profile") {
+            navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement
+        } else {
+            navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement.parentElement.parentElement.parentElement
+        }
+
+        if (navItem) {
+            navItem.classList.add('active');
+        }
+
+
+    </script>

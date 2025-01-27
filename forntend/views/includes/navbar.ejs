@@ -1,0 +1,87 @@
+<div class="home-header-section">
+    <header class="header home-header-section">
+        <div class="main-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                            class="logo" /></a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ">
+                                <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                    href="/">Home</a>
+                            </li>
+                            <!-- <span class="sr-only">(current)</span> -->
+                            <li class="nav-item">
+                                <a class="nav-link text-decoration-none navbar-text-color" href="/about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                            </li>
+
+                            <li class="nav-item dropdown redlight-dropdown ">
+                                <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Events</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Up
+                                                coming Events</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Blogs</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Projects</a></li>
+                                        <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                href="/und">Notice</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item navbar-text-color "><a
+                                    class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                    href="/und">Courses</a></li>
+                            <li class="nav-item navbar-text-color "><a
+                                    class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                    href="/und">Meetings</a></li>
+                        </ul>
+                        <hr <ul class="navbar-nav ">
+                        <li class="nav-item dropdown redlight-dropdown">
+                            <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+
+                            <div class="dropdown-menu dropdown-content-redlight">
+                                <ul class="list-unstyled">
+                                    <% if(!curUser){%>
+                                        <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/login">Login</a>
+                                        </li>
+                                        <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/signup">Sing
+                                                Up</a></li>
+                                        <% } if(curUser){%>
+                                            <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                    href="/profile">Profile</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/logout">Log
+                                                    out</a></li>
+                                            <% }%>
+
+                                </ul>
+                            </div>
+                        </li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+</div>

@@ -1,0 +1,671 @@
+<% layout("/layouts/boilerplates.ejs") %>
+<style>
+    /* Modal overlay */
+    .table-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    }
+
+    .scroll {
+
+        overflow: scroll;
+    }
+
+    .table-container1 {
+
+        max-height: 40rem;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #e0e0e0;
+        border-radius: 5px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 900px;
+        background: #2b2b2b;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        display: none;
+        overflow-y: auto;
+
+
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        z-index: 1000;
+    }
+
+    /* Pop-up container */
+    .new {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        /* Pop-up width set to 80% */
+        max-width: 900px;
+        background: #1E1E1E;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        z-index: 1001;
+        display: none;
+        overflow-y: auto;
+        /* Make pop-up scrollable */
+        max-height: 90%;
+        /* Max height for the pop-up */
+    }
+
+    /* Modal heading */
+    .new h1 {
+        font-size: 26px;
+        margin-bottom: 20px;
+        color: #F1F1F1;
+        text-align: center;
+
+    }
+
+    /* Form field styles */
+    .new label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #E0E0E0;
+    }
+
+    .new input,
+    .new textarea {
+        width: calc(100% - 20px);
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #121212;
+        background-color: #fff;
+    }
+
+    .new button {
+        width: 100%;
+        padding: 12px;
+        background-color: #ea0000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .new button:hover {
+        background-color: #b20000;
+    }
+
+
+
+
+
+    /* Certificate Add Button */
+    #newCert {
+
+        width: 12rem;
+        text-align: center;
+        margin: 1rem;
+        border-radius: 5px;
+        background-color: #db0202;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    #newCert:hover {
+        background-color: #b40303;
+    }
+
+    /* General Table Styles */
+    .table {
+        width: 100%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #1f1f1f;
+        /* Dark background */
+        color: #ffffff;
+        /* White text */
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #333333;
+        /* Slightly lighter background for header */
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #2a2a2a;
+        /* Alternate row background */
+    }
+
+    .table tbody tr:hover {
+        background-color: #444444;
+        /* Highlight row on hover */
+    }
+
+    /* Button Styles */
+    .btndes {
+        background-color: #db0202;
+        /* Primary button color */
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btndes:hover {
+        background-color: #aa0404;
+        /* Darker blue on hover */
+    }
+
+    .btndes:disabled {
+        background-color: #555555;
+        /* Disabled button */
+        cursor: not-allowed;
+    }
+
+    /* Link Button Styles */
+    .btn.primary {
+        background-color: #db0202;
+        /* Green for distributed button */
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        border: none;
+    }
+
+    .btn.primary:hover {
+        background-color: #bc0404;
+        /* Darker green on hover */
+    }
+
+    /* Table Wrapper */
+    table.table-striped {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #444444;
+        /* Border for the entire table */
+    }
+
+    h1 {
+        color: #ffffff;
+        font-size: 24px;
+        margin-bottom: 20px;
+
+    }
+
+    /* Scroll Bar Customization */
+    table {
+        scrollbar-width: thin;
+        scrollbar-color: #555555 #1f1f1f;
+        padding: 2rem 5rem 2rem 5rem;
+        /* Scroll bar colors */
+    }
+
+    table::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    table::-webkit-scrollbar-thumb {
+        background-color: #555555;
+        border-radius: 5px;
+    }
+
+    table::-webkit-scrollbar-track {
+        background-color: #1f1f1f;
+    }
+
+    .modal {
+        width: 1200px;
+        background-color: red;
+        height: 20rem;
+
+    }
+
+    .userselect {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 2rem;
+        display: none;
+
+    }
+
+    .usertable {
+        height: 10rem;
+        width: 900px;
+        border-collapse: collapse;
+        background-color: #1e1e1e;
+        /* Darker table background */
+    }
+
+    .usertable th,
+    .usertable td {
+        border: solid rgb(55, 43, 43) 0.01px;
+        /* Table border */
+        padding: 10px;
+        text-align: left;
+        color: white;
+
+        text-align: center;
+
+
+    }
+
+    .usertable th {
+        background-color: #333333;
+        /* Header background */
+        color: white;
+        text-align: center;
+
+    }
+
+    .chackbox {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    input[type="checkbox"] {
+        transition: background-color 0.3s ease;
+        width: 23px;
+        height: 23px;
+        cursor: pointer;
+    }
+
+    .usertablebody {
+        overflow: scroll;
+        height: 15rem;
+
+    }
+
+    .datasubmition {
+
+        width: 900px;
+        display: flex;
+        justify-content: end;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .description {
+        max-width: 300px;
+        /* Adjust width to suit your design */
+        text-align: justify;
+        word-wrap: break-word;
+        /* Ensure long words wrap correctly */
+        white-space: normal;
+        /* Ensure wrapping */
+    }
+
+    .delete-btn {
+        background-color: #ff4d4d;
+        color: #ffffff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .delete-btn:hover {
+        background-color: #ff1a1a;
+    }
+
+    .description {
+        max-width: 300px;
+        /* Adjust width to suit your design */
+        text-align: justify;
+        word-wrap: break-word;
+        /* Ensure long words wrap correctly */
+        white-space: normal;
+        /* Ensure wrapping */
+    }
+</style>
+
+
+    <!-- HEADER-SECTION -->
+
+    <div class="home-header-section">
+        <header class="header home-header-section">
+            <div class="main-header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                                class="logo" /></a>
+                        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                        href="/">Home</a>
+                                </li>
+                                <!-- <span class="sr-only">(current)</span> -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-decoration-none navbar-text-color"
+                                        href="/about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                                </li>
+
+                                <li class="nav-item dropdown redlight-dropdown ">
+                                    <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blogs</a>
+                                    <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Events</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Up
+                                                    coming Events</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Blogs</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Projects</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/und">Notice</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <% if(curUser && (curUser.role =="communityMember" || curUser.role =="admin")){ %>
+                                <li class="nav-item dropdown redlight-dropdown ">
+                                    <a class="nav-link dropdown-toggle " href="/account" id="navbarDropdown2" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control Panel</a>
+                                    <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                        <ul class="list-unstyled">
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/admin/distributecertification">Certificate</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/account">Account</a></li>
+                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                    href="/account/promotion">Promotion & Users</a></li>
+                                           
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <% } %>
+                                <li class="nav-item navbar-text-color "><a
+                                        class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                        href="/und">Courses</a></li>
+                                <li class="nav-item navbar-text-color "><a
+                                        class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                        href="/und">Meetings</a></li>
+                                <li class="nav-item ">
+                                    <a class="nav-link text-decoration-none navbar-text-color "
+                                        href="/contactus">Contact
+                                        Us</a>
+                                </li>
+                            </ul>
+                            <hr>
+
+                            <ul class="navbar-nav ">
+                                <li class="nav-item dropdown redlight-dropdown">
+                                    <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">Profile</a>
+
+                                    <div class="dropdown-menu dropdown-content-redlight">
+                                        <ul class="list-unstyled">
+                                            <% if(!curUser){%>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                        href="/user/login">Login</a>
+                                                </li>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                        href="/user/signup">Sing
+                                                        Up</a></li>
+                                                <% } if(curUser){%>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                            href="/profile">Profile</a></li>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                            href="/user/logout">Log
+                                                            out</a></li>
+                                                    <% }%>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+
+        <div id="newCert" style="cursor: pointer;">Add Certificate</div>
+
+        <div class="overlay"></div>
+        <div class="new">
+            <h1>Add New Certificate</h1>
+            <form action="/admin/addcertification" method="POST">
+                <label for="title">Title:</label>
+                <input type="text" name="title" required>
+                <br><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <br><br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                <br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    <% if(certificate.length !=0){ %>
+        <div class="table-container">
+            <h1 class="mb-4">Certificate List</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th class="description">Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                        <th>Details</th>
+                        <th>Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <% certificate.forEach(cert=> { %>
+                                <tr>
+                                    <td>
+                                        <%= cert.title %>
+                                    </td>
+                            <td class="description">
+                                <%= cert.description %>
+                            </td>
+                            <td>
+                                <%= new Date(cert.date).toLocaleDateString() %>
+                            </td>
+                            <td>
+                                <button class="btndes dspbtn" data-id="<%= cert._id %>">
+                                    Distribute Certificate
+                                </button>
+                            </td>
+                            <td>
+                                <% if(cert.user.length>=1){ %>
+                                    <a href="/admin/certificatedetails/<%= cert._id %>">
+                                        <button class="btndes btn primary">
+                                            Distributed Certificate <%=cert.user.length %>
+                                        </button>
+                                    </a>
+                                    <% }else{ %>
+                                        <button class="btndes" disabled>
+                                            N/A
+                                        </button>
+                                        <% } %>
+                            </td>
+                            <td>
+                                <form action="/admin/deletecertification/<%= cert._id %>" method="post">
+                                    <button type="submit" class="delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+
+                            </td>
+                            </tr>
+
+                            <% }); %>
+                                </tbody>
+                                </table>
+        </div>
+
+            <div class="userselect">
+            <h3>User list</h3>
+            <table class="usertable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Student ID</th>
+                        <th class="chackbox">Select User</th>
+                        </tr>
+                        </thead>
+                        <tbody class="usertablebody">
+                    <% user.forEach(user=> { %>
+                        <tr>
+                            <td>
+                                <%= user.userInfo.firstName+" "+user.userInfo.lastName %>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <%= user.username %>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <%=user.userInfo.studentID %>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <td class="
+                                    chackbox"><input name="<%= user._id %>" type="checkbox">
+                            </td>
+                            </tr>
+                        <%}) %>
+                            </tbody>
+                            </table>
+            <div class="datasubmition">
+                <button class="btndes createcret">Save changes</button>
+                <button class="btndes">Cencel</button>
+            
+            </div>
+            </div>
+            <% } %>
+                .
+    </div>
+    <script>
+        const buttons = document.querySelectorAll(".btndes.dspbtn");
+        const userbox = document.querySelector(".userselect");
+        buttons.forEach((button) => {
+            button.addEventListener("click", (e) => {
+                let certificateId = button.getAttribute("data-id");
+                userbox.style.display = "block"
+                document.querySelector(".btndes.createcret").addEventListener("click", async (e) => {
+                    let id = button.getAttribute("data-id");
+                    const checkboxes = document.querySelectorAll('.chackbox input[type="checkbox"]');
+                    const selectedUsers = Array.from(checkboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.name);
+
+
+
+                    if (selectedUsers != []) {
+
+                        try {
+                            // Send POST request to the server
+                            const response = await fetch('/admin/distributecertification', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ certificateId, selectedUsers }) // Corrected here
+                            });
+
+                            // Handle response
+                            const result = await response.json();
+                           console.log(result)
+                            if (result.success) {
+                                sessbox.style.display = 'block';
+                                sesmsg.innerText = result.success;
+                              
+                            } else {
+                                errbox.style.display = "block";
+                                errmsg.innerText = result.error;
+                            }
+                        } catch (error) {
+                            errbox.style.display = "block";
+                            errmsg.innerText = "An error occurred: " + error.message;
+                        }
+
+                    } else {
+                        alert("select user")
+                    }
+
+
+                })
+            });
+        });
+
+
+
+    </script>
+                    <script>
+
+                        document.querySelector('#newCert').addEventListener('click', () => {
+                            document.querySelector('.overlay').style.display = 'block';
+                            document.querySelector('.new').style.display = 'block';
+                        });
+
+                                                                                                                                                        // Hide pop-up when clicking outside the modal
+                                                                                                                                                        document.querySelector('.overlay').addEventListener('click', () => {
+                                                                                                                                                            document.querySelector('.overlay').style.display = 'none';
+                                                                                                                                                            document.querySelector('.new').style.display = 'none';
+                                                                                                                                                        });
+                                                                                                                                                    </script>

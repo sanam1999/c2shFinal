@@ -1,0 +1,145 @@
+<% layout("/layouts/boilerplates.ejs") %>
+    <style>
+        .body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <div class="body">
+        <div class="form-container">
+            <h2>Create Event Post</h2>
+            <form class="post-event" method="POST" action="/event" enctype="multipart/form-data">
+
+                <input type="text" name="post[title]" placeholder="Event Title" required>
+                <textarea name="post[description]" rows="4" placeholder="Event Description" required></textarea>
+                <input type="text" name="post[location]" placeholder="Event Location" required>
+                <input type="date" name="post[date]" required>
+                <input type="file" name="post[image]" accept="image/*" multiple>
+
+                <button type="submit" class="create-event">Create Event</button>
+            </form>
+            <div class="loader"></div>
+        </div>
+    </div>
+    <script>
+        const errorMsg = document.querySelector('.e_flassmsg');
+        const seggMsg = document.querySelector('.s_flassmsg');
+        let loadingSpinner = document.querySelector('.loader');
+
+        document.querySelector('.post-event').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            loadingSpinner.style.display = 'block';
+
+            let fileInput = document.querySelector('input[name="post[image]"]');
+            const files = fileInput.files; // Get the files from the input
+
+            // Check if the number of uploaded images exceeds the limit
+            if (files.length > 5) {
+                loadingSpinner.style.display = 'none'; // Hide spinner if the validation fails
+                showMessage(errorMsg, 'You can upload a maximum of 5 images.');
+                return; // Stop the submission
+            }
+
+            const formData = new FormData(event.target); // Create FormData object from the form
+
+            try {
+                const response = await fetch('/event', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    fileInput = ""
+                    showMessage(seggMsg, result.message);
+                } else {
+                    showMessage(errorMsg, result.message);
+                }
+            } catch (error) {
+                showMessage(errorMsg, error);
+
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        });
+
+        function showMessage(element, message) {
+            element.innerText = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+
+    </script>
+
+
+
+
+    </script>

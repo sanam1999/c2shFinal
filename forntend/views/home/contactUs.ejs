@@ -1,0 +1,351 @@
+<% layout("/layouts/boilerplates.ejs") %>
+
+
+
+
+    <body>
+        <!-- HEADER-SECTION -->
+        <div class="home-header-section">
+            <header class="header home-header-section">
+                <div class="main-header">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-light p-0">
+                            <a class="navbar-brand pt-0" href="/"><img src="/images/redlight-logo.png" alt=""
+                                    class="logo" /></a>
+                            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item ">
+                                        <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
+                                            href="/">Home</a>
+                                    </li>
+                                    <!-- <span class="sr-only">(current)</span> -->
+                                    <li class="nav-item">
+                                        <a class="nav-link text-decoration-none navbar-text-color"
+                                            href="/about">About</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link text-decoration-none navbar-text-color"
+                                            href="/und">Services</a>
+                                    </li>
+
+                                    <li class="nav-item dropdown redlight-dropdown ">
+                                        <a class="nav-link dropdown-toggle " href="/und" id="navbarDropdown2"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">Blogs</a>
+                                        <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                            <ul class="list-unstyled">
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/und">Events</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/und">Up
+                                                        coming Events</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/und">Blogs</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/und">Projects</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/und">Notice</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <% if(curUser && (curUser.role =="communityMember" || curUser.role =="admin")){ %>
+                                    <li class="nav-item dropdown redlight-dropdown ">
+                                        <a class="nav-link dropdown-toggle " href="/account" id="navbarDropdown2" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control Panel</a>
+                                        <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
+                                            <ul class="list-unstyled">
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/admin/distributecertification">Certificate</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/account">Account</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link"
+                                                        href="/account/promotion">Promotion & Users</a></li>
+                                               
+    
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <% } %>
+                                    <li class="nav-item navbar-text-color "><a
+                                            class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                            href="/und">Courses</a></li>
+                                    <li class="nav-item navbar-text-color "><a
+                                            class="nav-link text-decoration-none contact-us-margin navbar-text-color"
+                                            href="/und">Meetings</a></li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-decoration-none navbar-text-color "
+                                            href="/contactus">Contact
+                                            Us</a>
+                                    </li>
+                                </ul>
+                                <hr>
+
+                                <ul class="navbar-nav ">
+                                    <li class="nav-item dropdown redlight-dropdown">
+                                        <a class="nav-link dropdown-toggle " href="/profile" id="navbarDropdown"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">Profile</a>
+
+                                        <div class="dropdown-menu dropdown-content-redlight">
+                                            <ul class="list-unstyled">
+                                                <% if(!curUser){%>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                            href="/user/login">Login</a>
+                                                    </li>
+                                                    <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                            href="/user/signup">Sing
+                                                            Up</a></li>
+                                                    <% } if(curUser){%>
+                                                        <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                                href="/profile">Profile</a></li>
+                                                        <li class="nav-item"> <a class="dropdown-item nav-link"
+                                                                href="/user/logout">Log
+                                                                out</a></li>
+                                                        <% }%>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <!-- BANNER-SECTION -->
+            <div class="home-banner-section overflow-hidden">
+                <div class="banner-container-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-md-0 mb-4  text-center">
+                                <div class="about-banner-text" data-aos="fade-up">
+                                    <h1 class="text-white about-h1" data-aos="zoom-out-left">Contact Us</h1>
+                                    <p class="text-white banner-paragraph" data-aos="zoom-out-right">Have questions or
+                                        need assistance? Our team is ready to help. Reach out to us to safeguard your
+                                        business and address
+                                        your cybersecurity concerns.</p>
+                                    <div class="about-btn">
+                                        <a href="/" class="text-decoration-none">Home <span
+                                                class="about-text-color"> /
+                                                Contact</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-md-0 mb-4">
+                                <div class="about-us-section-page contact-us-section" data-aos="fade-up">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <h3 class="contact-us-title" data-aos="fade-up-left">Drop Us A Message For
+                                                Any Query</h3>
+                                            <p data-aos="fade-up-right">Got a question or need assistance? We're here to
+                                                help. Connect with us today to get expert support for all your
+                                                cybersecurity needs.
+
+                                            </p>
+                                            <ul class="list-unstyled about-us-list">
+                                                <li class="contact-li">
+                                                    <div class="icons-rounded-box-contact">
+                                                        <figure class="mb-0"><img src="/images/contact-icon1.png"
+                                                                alt="">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="contact-content">
+                                                        <span class="contact-title">Where We Are:</span>
+                                                        <span class="contact-parah">HORIZON CAMPUS
+                                                            Knowledge City Malabe, KCM Drive, Off Millennium Road,
+                                                            Malabe,
+                                                            Sri Lanka</span>
+                                                    </div>
+                                                </li>
+
+                                                <li class="contact-li">
+                                                    <div class="icons-rounded-box-contact">
+                                                        <figure class="mb-0"><img src="/images/contact-icon2.png"
+                                                                alt="">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="contact-content">
+                                                        <span class="contact-title">Phone:</span>
+                                                        <span class="contact-parah">+94 78 582 8010 <span
+                                                                class="pr-2 pl-2">I </span>+94 75 706 3083</span>
+                                                    </div>
+                                                </li>
+                                                <li class="contact-li">
+                                                    <div class="icons-rounded-box-contact">
+                                                        <figure class="mb-0"><img src="/images/contact-icon3.png"
+                                                                alt="">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="contact-content">
+                                                        <span class="contact-title">Email:</span>
+                                                        <span class="contact-parah">c2sh@horizoncampus.edu.lk</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="about-section-form">
+                                                <form method="POST" action="/contactus">
+                                                    <div class="form-group contact-form-margin">
+                                                        <input type="text" class="form-control input-text"
+                                                            id="validationCustom01" placeholder="Your Name" required
+                                                            name="name">
+                                                    </div>
+                                                    <div class="form-group contact-form-margin">
+                                                        <input type="email" class="form-control input-text"
+                                                            id="validationCustom02" placeholder="Your Email" required
+                                                            name="email">
+                                                    </div>
+                                                    <div class="form-group contact-form-margin">
+                                                        <input type="text" class="form-control input-text"
+                                                            id="validationCustom03" placeholder="Subject" required
+                                                            name="subject">
+                                                    </div>
+                                                    <div class="form-group contact-form-margin-text-area">
+                                                        <textarea id="message" cols="10" rows="10" class="form-control"
+                                                            name="messege" placeholder="Your Message"
+                                                            required></textarea>
+                                                    </div>
+                                                    <div class="contact-section-btn text-center">
+                                                        <button type="submit" id="submitBtn"
+                                                            class="btn btn-primary hover-effect">Send
+                                                            Message</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section overflow-hidden">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.699654547137!2d79.95830367516871!3d6.92645939307331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae257c3ffc28a33%3A0x8a41899f8903cb3a!2sKCM%20(Knowledge%20City%20Malabe)!5e0!3m2!1sen!2slk!4v1734844254964!5m2!1sen!2slk"
+                            width="1300" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+    <!-- send msg  -->
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', async (event) => {
+            event.preventDefault();
+ spiner.style.visibility = "visible"
+            // Collect form data
+            const name = document.getElementById('validationCustom01').value;
+            const email = document.getElementById('validationCustom02').value;
+            const subject = document.getElementById('validationCustom03').value;
+            const message = document.getElementById('message').value;
+
+            // Check if any field is empty
+            if (!name || !email || !subject || !message) {
+                errbox.style.display = "block";
+                errmsg.innerText = "All fields are required!";
+                return;  // Prevent form submission if any field is empty
+            }
+
+
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailRegex.test(email)) {
+                errbox.style.display = "block";
+                errmsg.innerText = "Please enter a valid email address!";
+                return;  // Prevent form submission if the email is invalid
+            }
+            const formData = { name, email, subject, message };
+
+            try {
+                // Send POST request to the server
+                const response = await fetch('/contactus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                // Handle response
+                const result = await response.json();
+                spiner.style.visibility = "hidden";
+                if (response.ok) {
+                    sessbox.style.display = 'block';
+                    sesmsg.innerText = "Message sent successfully!";
+                    document.querySelector('form').reset();
+                } else {
+                    errbox.style.display = "block";
+                    errmsg.innerText = "Failed to send the message.";
+                }
+              
+            } catch (error) {
+                errbox.style.display = "block";
+                errmsg.innerText = "An error occurred: " + error.message;
+            }
+        });
+    </script>
+
+
+
+    <script>
+        // Get the current page path
+        const currentPath = window.location.pathname;
+
+        const pathname = {
+            '/profile/edit': 'editprofile',
+            '/': 'Home',
+            '/user/login': 'Login',
+            '/profile': 'Profile',
+            '/user/signup': 'Signup',
+            '/account': 'Account',
+            '/user/signup': 'Signup',
+            '/user/signup': 'Signup',
+            '/contactus': 'Contact Us'
+
+        };
+        // document.querySelectorAll('.nav-item').forEach(item => {
+        //     item.classList.remove('active');
+        // });
+        if (pathname[currentPath]) {
+            document.querySelector('.title').innerText = pathname[currentPath];
+
+        }
+        let navItem
+        if (currentPath == "/" || currentPath == "/account/promotion" || currentPath == "/account" || currentPath == "/profile") {
+            navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement
+        } else {
+            navItem = document.querySelector(`.nav-item a[href="${currentPath}"]`).parentElement.parentElement.parentElement.parentElement
+        }
+
+        if (navItem) {
+            navItem.classList.add('active');
+        }
+
+
+    </script>
+
+    </html>

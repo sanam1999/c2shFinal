@@ -1,0 +1,96 @@
+<% layout('layouts/boilerplates.ejs') %>
+
+    <div class="body">
+        <div class="container">
+            <a href="event/addevent"><button>Add New Post</button></a>
+            <br>
+            <hr>
+            <div class="grid">
+                <% if (events && events.length> 0) { %>
+
+                    <% events.forEach(event=> { %>
+                        <a href="/event/edit?id=<%= event._id %>">
+
+                            <div class="post">
+                                <% if (event.image && event.image.length) { %>
+                                    <% event.image.forEach((img, index)=> { %>
+                                        <img src="<%= img.url %>" alt="Event Image <%= index + 1 %>">
+                                        <% }); %>
+
+                                            <% } else { %>
+                                                <img src="https://via.placeholder.com/600" alt="Placeholder Image">
+                                                <% } %>
+
+                                                    <div class="post-content">
+                                                        <h2 class="post-title">
+                                                            <%= event.title %>
+                                                        </h2>
+                                                        <p class="post-description">
+                                                            <%= event.description %>
+                                                        </p>
+                                                        <% if (event.location) { %>
+                                                            <p class="post-location">Location: <%= event.location %>
+                                                            </p>
+                                                            <% } %>
+                                                                <% if (event.date) { %>
+                                                                    <p class="post-date">Date: <%=
+                                                                            event.date.toDateString() %>
+                                                                    </p>
+                                                                    <% } %>
+                                                    </div>
+                                                    <form class="deletepostform" action="event/" method="POST"
+                                                        data-id="<%= event._id %>">
+                                                        <button class="deletebtn">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </form>
+
+                        </a>
+                        <% }) %>
+                            <% } else { %>
+                                <p>No events found.</p>
+                                <% } %>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const errorMsg = document.querySelector('.e_flassmsg');
+        const seggMsg = document.querySelector('.s_flassmsg');
+
+        document.querySelectorAll('.deletepostform').forEach(form => {
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const actionUrl = form.getAttribute('action');
+                const eventId = form.getAttribute('data-id');
+                console.log(event)
+                try {
+                    const response = await fetch(actionUrl, {
+                        method: 'delete',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: eventId })
+                    });
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showMessage(seggMsg, result.message);
+                        event.target.parentElement.remove();
+                    } else {
+                        showMessage(errorMsg, result.message);
+                    }
+                } catch (error) {
+                    showMessage(errorMsg, error);
+                }
+            });
+        });
+
+        function showMessage(element, message) {
+            element.innerText = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+    </script>
