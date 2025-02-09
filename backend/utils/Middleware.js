@@ -89,7 +89,11 @@ module.exports.verified = async (req, res, next) => {
     }else{
         user = await User.findByUsername(req.body.username)
     }
-    const { role } = user;
+    let role
+    user ? { role } = user : req.flash("error", "unaccepted error");
+
+
+    
     if (role == "Unverified") {
         req.flash("error", "Your payment has not been completed. If you have already made the payment, please wait up to 4 hours (Monday to Friday) for verification.");
         return res.redirect('/user/login');

@@ -20,16 +20,17 @@
     margin-left: 0.2rem;
 }
 
-.password-toggle {
+/* .password-toggle {
     position: absolute;
     right: 35px;
     top: 40%;
     transform: translateY(-50%);
     cursor: pointer;
     color: white;
+    
   
 
-}
+} */
 
 
 </style>
@@ -60,7 +61,7 @@
                                     <a class="nav-link text-decoration-none navbar-text-color" href="/about">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-decoration-none navbar-text-color" href="/und">Services</a>
+                                    <a class="nav-link text-decoration-none navbar-text-color" href="/und">Membership</a>
                                 </li>
 
                                 <li class="nav-item dropdown redlight-dropdown ">
@@ -69,8 +70,7 @@
                                     <div class="dropdown-menu dropdown-content-redlight blogs-section-drop-down">
                                         <ul class="list-unstyled">
                                             <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Events</a></li>
-                                            <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Up
-                                                    coming Events</a></li>
+                                          
                                             <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Blogs</a></li>
                                             <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Projects</a></li>
                                             <li class="nav-item"> <a class="dropdown-item fierce-menu nav-link" href="/und">Notice</a></li>
@@ -117,8 +117,7 @@
                                             <% if(!curUser){%>
                                                 <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/login">Login</a>
                                                 </li>
-                                                <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/signup">Sing
-                                                        Up</a></li>
+                                                <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/signup">Signup</a></li>
                                                 <% } if(curUser){%>
                                                     <li class="nav-item"> <a class="dropdown-item nav-link" href="/profile">Profile</a></li>
                                                     <li class="nav-item"> <a class="dropdown-item nav-link" href="/user/logout">Log
@@ -147,7 +146,7 @@
         
                         <div class="form_left">
         
-                            <h1>Welcome Home</h1>
+                            <h1>Welcome to C2sh</h1>
         
                             <p class="descrptt">In today's digital world, cybersecurity is more important than ever. Our platform provides state-of-the-art protection against cyber threats, helping you safeguard your personal and business data. From advanced encryption to real-time monitoring, we ensure your online presence remains secure, private, and protected from evolving cyber risks.</p>
 
@@ -173,7 +172,7 @@
                                         <div class="password-container">
                                             <input type="password" required name="password" class="frm-control" id="inputPassword"
                                                 placeholder="Enter your password" autocomplete="current-password" />
-                                            <span toggle="#inputPassword" class="fa fa-eye password-toggle" id="togglePassword"></span>
+                                            <span toggle="#inputPassword" class="fa fa-eye password-toggle" id="togglePassword">kj</span>
                                         </div>
                                 </div>
         
@@ -220,19 +219,25 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 });
 
 
-const togglePassword = document.querySelector("#togglePassword");
-const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
-const password = document.querySelector("#inputPassword");
+document.addEventListener("DOMContentLoaded", function () {
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#inputPassword");
 
-
-
-    togglePassword.addEventListener("click", function () {
-    // Toggle the type of the password field
-    const type = password.type === "password" ? "text" : "password";
-    password.type = type;
-    // Toggle the eye icon
-    this.classList.toggle("fa-eye-slash");
+    if (togglePassword && password) {
+        togglePassword.addEventListener("click", function () {
+            // Toggle the password input type
+            const type = password.type === "password" ? "text" : "password";
+            password.type = type;
+            
+            // Toggle the eye icon
+            this.classList.toggle("fa-eye");
+            this.classList.toggle("fa-eye-slash");
+        });
+    } else {
+        console.error("Toggle password elements not found");
+    }
 });
+
 
 </script>
     <script>

@@ -4,8 +4,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user:  process.env.nodemilerPsaa ,
-    pass: process.env.nodemilerUser ,
+    user:  "c2sh.horizoncampus.com" ,
+    pass:  "jfdy gyfr gkbn qplv",
   },
 });
 module.exports.AccountVerification = async (token, userid, email, name) => {
@@ -321,7 +321,7 @@ module.exports.Contactus = async (name, email, subject, message) => {
       to: `${process.env.nodemilerPsaa}`,
       subject:`${subject}`,
        html: `
-        <h1>From Cyber Security Website</h1>
+        <h1>From Cybersecurity Website</h1>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>From Email:</strong> ${email}</p>
         
