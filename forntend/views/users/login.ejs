@@ -146,7 +146,7 @@
         
                         <div class="form_left">
         
-                            <h1>Welcome to C2sh</h1>
+                            <h1>Welcome to c2sh</h1>
         
                             <p class="descrptt">In today's digital world, cybersecurity is more important than ever. Our platform provides state-of-the-art protection against cyber threats, helping you safeguard your personal and business data. From advanced encryption to real-time monitoring, we ensure your online presence remains secure, private, and protected from evolving cyber risks.</p>
 
@@ -172,7 +172,7 @@
                                         <div class="password-container">
                                             <input type="password" required name="password" class="frm-control" id="inputPassword"
                                                 placeholder="Enter your password" autocomplete="current-password" />
-                                            <span toggle="#inputPassword" class="fa fa-eye password-toggle" id="togglePassword">kj</span>
+                                            <!-- <span toggle="#inputPassword" class="fa fa-eye password-toggle" id="togglePassword"></span> -->
                                         </div>
                                 </div>
         
@@ -219,24 +219,24 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const togglePassword = document.querySelector("#togglePassword");
-    const password = document.querySelector("#inputPassword");
+// document.addEventListener("DOMContentLoaded", function () {
+//     const togglePassword = document.querySelector("#togglePassword");
+//     const password = document.querySelector("#inputPassword");
 
-    if (togglePassword && password) {
-        togglePassword.addEventListener("click", function () {
-            // Toggle the password input type
-            const type = password.type === "password" ? "text" : "password";
-            password.type = type;
+//     if (togglePassword && password) {
+//         togglePassword.addEventListener("click", function () {
+//             // Toggle the password input type
+//             const type = password.type === "password" ? "text" : "password";
+//             password.type = type;
             
-            // Toggle the eye icon
-            this.classList.toggle("fa-eye");
-            this.classList.toggle("fa-eye-slash");
-        });
-    } else {
-        console.error("Toggle password elements not found");
-    }
-});
+//             // Toggle the eye icon
+//             this.classList.toggle("fa-eye");
+//             this.classList.toggle("fa-eye-slash");
+//         });
+//     } else {
+//         console.error("Toggle password elements not found");
+//     }
+// });
 
 
 </script>
