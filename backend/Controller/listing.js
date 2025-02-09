@@ -18,7 +18,7 @@ module.exports.index = async (req, res) => {
         let userInfo = await User.find({ role: "communityMember" }).populate("userInfo");
 
       sortedUsers = restructureUserInfo(userInfo, 3)
-      console.log(communityMemberCount)
+    
      
         // Send the response (not shown in the original code but assumed)
         res.render("home/home.ejs", { verifiedCount, communityMemberCount, eventcount, Courses, sortedUsers });
@@ -154,7 +154,7 @@ function restructureUserInfo(userInfo, size) {
                 for (const team of user.userInfo.teams) {
                     if (team.roles === role) {
                         sortedUsers.push(user);
-                        console.log(sortedUsers)
+                      
                         if (sortedUsers.length === size) {
                        
                             return sortedUsers;
@@ -166,7 +166,7 @@ function restructureUserInfo(userInfo, size) {
     }
 
     // Log sorted user information
-    console.log(sortedUsers)
+
 
     return sortedUsers; 
 }
