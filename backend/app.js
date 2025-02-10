@@ -28,7 +28,7 @@ const { userInfo } = require('os');
 
 
 // Database connection
-mongoose.connect(process.env.mongoURI)
+mongoose.connect("mongodb+srv://c2sh:Hakunamatata99@cluster0.ojj3i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
@@ -46,14 +46,14 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 
 const Store = MongoStore.create({
-    mongoUrl: process.env.mongoURI,
-    crypto: { secret:  process.env.secreT },
+    mongoUrl: "mongodb+srv://c2sh:Hakunamatata99@cluster0.ojj3i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    crypto: { secret: "sanam" },
     touchAfter: 24 * 60 * 60,
 });
 
 const sessionOptions = {
     store: Store,
-    secret: process.env.secreT ,
+    secret: "sanam" ,
     resave: false,
     saveUninitialized: true,
     cookie: {
