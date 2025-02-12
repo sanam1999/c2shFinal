@@ -162,9 +162,7 @@ module.exports.promotionPut = async (req, res) => {
         // Prevent redundant updates
         if (user.role === action) {
            return res.status(400).json({ error: 'This user already holds this position' });
-
         }
-
         let updatedUser;
 
         switch (action) {
@@ -260,7 +258,7 @@ async function userpromotionremove(department, role, id, user) {
 };
 
 async function addTeamToUser(userId, teamName, roles, User) {
-    
+    console.log("addTeam")
     try {
         // Check if user already holds the same position
         const user = await Userinfo.findById(userId);
@@ -288,9 +286,10 @@ async function addTeamToUser(userId, teamName, roles, User) {
         if (!updatedUser) {
             throw new Error('Error updating user with new team.');
         }
-PromotionNotification(User.username, User.name,teamName, roles )
+        PromotionNotification(User.username, User.name,teamName, roles )
         return { message: "Promotion successful."  ,teamName, roles};
     } catch (error) {
+        console.log("sdf")
         throw new Error('Error adding team to user: ' + error.message);
     }
 };

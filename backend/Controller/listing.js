@@ -267,8 +267,8 @@ try{
    
 }
 module.exports.contactus = (req, res) => {
-   
-     res.render("home/contactus.ejs");
+  
+     res.render("home/contactUs.ejs");
 }
 module.exports.contactuspost = async (req, res) => {
     try {

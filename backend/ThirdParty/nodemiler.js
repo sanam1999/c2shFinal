@@ -4,8 +4,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user:  "c2sh.horizoncampus.com" ,
-    pass:  "jfdy gyfr gkbn qplv",
+    user:  process.env.nodemilerUser ,
+    pass:  process.env.nodemilerPsaa,
   },
 });
 module.exports.AccountVerification = async (token, userid, email, name) => {
@@ -27,10 +27,9 @@ module.exports.AccountVerification = async (token, userid, email, name) => {
 
     </div>
     <br>
-    <!-- Activation Button -->
-    <a href="${process.env.baseurl}/verifid?userid=${userid}&token=${token}&email=${email}&name=${name}"
-        style="display: inline-block; padding: 10px 20px; background-color: #264bb3; color: white; text-decoration: none; border-radius: 10px; ">Activate
-        Now</a>
+   
+    
+<a href="http://${process.env.baseurl}user/verifid?userid=${userid}&token=${token}&email=${email}&name=${name}" style="display: inline-block; padding: 10px 20px; background-color: #264bb3; color: white; text-decoration: none; border-radius: 10px;">Activate Now</a>
 
 
     <p style="max-width: 30rem;"><strong style="color: red;">Important:</strong> If you do not confirm your account
@@ -51,7 +50,7 @@ module.exports.AccountVerification = async (token, userid, email, name) => {
   }
 }
 module.exports.PostActivationMSG = async (email, name) => {
-   
+   console.log("fsdafasfasdf")
    try {
     const info = await transporter.sendMail({
       to: `${email}`,
@@ -142,7 +141,7 @@ module.exports.PaymentConfirmation = async (email, name) => {
   }
 }
  module.exports.PromotionNotification = async (email, name, team, role) => {
-console.log(email, name, team, role)
+  console.log("thisis madarchaod")
   try {
   
     let responsibilities = '';
@@ -234,13 +233,14 @@ console.log(email, name, team, role)
   }
 }
 module.exports.DepromotionNotification = async (email, name, oldRole, team) => {
+
   try {
     const info = await transporter.sendMail({
       to: `${email}`,
       subject: `Update Regarding Your Role in the ${team} Team`,
       text: `Hello ${name}, we wanted to notify you about a change in your role within the ${team} team.`,
       html: `
-        <div style="text-align: center; font-family: Arial, sans-serif;">
+        <div style="font-family: Arial, sans-serif;">
           <h2 style="color: #264bb3;"><strong>Important Update Regarding Your Role, ${name}</strong></h2>
           
           <p>We want to thank you for your contributions as a <strong>${oldRole}</strong> within the ${team} team. Your hard work and dedication have been greatly appreciated.</p>

@@ -28,7 +28,7 @@ const { userInfo } = require('os');
 
 
 // Database connection
-mongoose.connect("mongodb+srv://c2sh:Hakunamatata99@cluster0.ojj3i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.mongoUrl)
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 

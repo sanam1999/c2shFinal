@@ -28,7 +28,7 @@ module.exports.distributecertificationPost = async (req, res) => {
 
             if (!certificate) {  
                 const combinedString = certificateId + "?" + userId; 
-                let qrcode = `${process.env.baseurl}/admin/verifycertificate?code=${combinedString}`;
+                let qrcode = `${process.env.baseurl}admin/verifycertificate?code=${combinedString}`;
                 userdata.push({
                     userId: userId,
                     qrcode: qrcode

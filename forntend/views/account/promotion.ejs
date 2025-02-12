@@ -188,9 +188,7 @@ select{
                             <li class="nav-item navbar-text-color "><a
                                     class="nav-link text-decoration-none contact-us-margin navbar-text-color"
                                     href="/und">Courses</a></li>
-                            <li class="nav-item navbar-text-color "><a
-                                    class="nav-link text-decoration-none contact-us-margin navbar-text-color"
-                                    href="/und">Meetings</a></li>
+                            
                             <li class="nav-item ">
                                 <a class="nav-link text-decoration-none navbar-text-color "
                                     href="/contactus">Contact
@@ -522,7 +520,7 @@ console.log(input)
                            
                             if (event.target.classList.value == "save") {
                                 let html = `<span>${result.teamName} -> ${result.roles}</span><br>`;
-                                console.log(result, html)
+                                
                                 elementrole.insertAdjacentHTML('beforeend', html);
                             } else {
                                 const spans = elementrole.querySelectorAll("span");

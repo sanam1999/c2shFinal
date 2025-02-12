@@ -66,8 +66,11 @@ module.exports.verifid = async (req, res) => {
          return   res.redirect('/user/login');
             
 }
+console.log( userid, token, email,name)
+console.log("1")
         let Tken = await Token.findById(token);
         if (Tken && Tken.Email === email) {
+            console.log("2")
             await User.findByIdAndUpdate(userid, { accStatus: true });
             await Token.findByIdAndDelete(Tken._id);
             PostActivationMSG(email,name)
